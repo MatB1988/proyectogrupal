@@ -1,1 +1,1 @@
-wget -O - https://raw.githubusercontent.com/mmvvff/henry_pg_anlytcs/main/scripts/1_setup.bash | bash
+wget -O - https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/1_setup.bash | bash

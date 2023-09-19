@@ -1,1 +1,1 @@
-cd ~/1_etl && wget -O - https://raw.githubusercontent.com/mmvvff/henry_pg_anlytcs/main/scripts/2_extract_datoscrudos.bash | bash
+cd ~/1_etl && wget -O - https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/2_extract_datoscrudos.bash | bash
