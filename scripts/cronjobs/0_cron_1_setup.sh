@@ -1,0 +1,1 @@
+wget -O - https://raw.githubusercontent.com/mmvvff/henry_pg_anlytcs/main/scripts/1_setup.bash | bash
