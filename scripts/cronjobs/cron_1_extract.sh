@@ -1,1 +1,1 @@
-cd ~/1_etl && sudo -S wget -O - https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/2_extract_datoscrudos.bash | bas
+cd ~/1_etl && sudo -S wget -O - https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/2_extract_datoscrudos.bash | bash
