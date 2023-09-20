@@ -4,9 +4,9 @@ sudo wget https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts
 sudo wget https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/cronjobs/cron_3_cargar.sh
 
 # Ejemplo cron job
-30 15 * * * ~/1_etl/0_scripts/cron_1_extract.sh
-50 15 * * * ~/1_etl/0_scripts/cron_2_transform.sh
-00 16 * * * ~/1_etl/0_scripts/cron_3_cargar.sh
+30 15 * * * sh ~/1_etl/0_scripts/cron_1_extract.sh >/dev/null 2>&1
+50 15 * * * sh ~/1_etl/0_scripts/cron_2_transform.sh
+00 16 * * * sh ~/1_etl/0_scripts/cron_3_cargar.sh
 
 # cron jobs para setup
 wget -O - https://raw.githubusercontent.com/MatB1988/proyectogrupa/main/scripts/1_setup.bash | bash
