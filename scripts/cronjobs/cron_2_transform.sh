@@ -1,1 +1,1 @@
-cd ~/1_etl/1_data && sudo wget -O transformar_v1.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/3_transformar_v1.py && sudo python3 transformar_v1.py
+cd /home/henry_grupo10_v1/1_etl/1_data && sudo wget -O transformar_v1.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/3_transformar_v1.py && sudo python3 transformar_v1.py
