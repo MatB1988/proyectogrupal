@@ -1,0 +1,1 @@
+wget -O - https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/1_setup.bash | bash
