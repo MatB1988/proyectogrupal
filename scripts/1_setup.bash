@@ -7,6 +7,7 @@ sudo mkdir 0_scripts 1_data && cd 1_data
 sudo mkdir 1_external 2_pipeline 3_output
 cd /home/henry_grupo10_v1/0_scripts
 sudo wget -O python_requirements.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_requirements.txt
+sudo pip install -U --no-cache-dir gdown --pre
 sudo apt autoremove -qq -y
 cd ~
 
