@@ -17,7 +17,7 @@ deactivate
 
 # instalamos entorno de R
 # update indices
-sudo apt update -qq -y
+sudo apt update -y
 # install two helper packages we need
 sudo apt install software-properties-common dirmngr -y
 # add the signing key (by Michael Rutter) for these repos
