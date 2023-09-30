@@ -23,3 +23,15 @@ La misión fundamental de este programa es rescatar restaurantes que atraviesan 
 Nos concentramos en medir la satisfacción, lealtad y popularidad de los clientes como indicadores clave para ayudar a mejorar restaurantes.
 
 En resumen, nuestro enfoque no considerar aspectos financieros u operativos. Enfocando nuestro análisis desde la perfectiva del cliente.
+
+## **Sprint**
+
+- [Sprint 1](https://github.com/MatB1988/proyectogrupal/blob/121a5200f58ed283777462b09746c525e1790a0e/Sprint/Sprint_1.MD)
+- [Sprint 2](https://github.com/MatB1988/proyectogrupal/blob/121a5200f58ed283777462b09746c525e1790a0e/Sprint/Sprint_2.MD)
+
+## **ETL y EDA**
+- [Diccionario de datos](C:\Users\54280\Documents\GitHub\proyectogrupal\Notebooks\ETL_EDA\Diccionario_datos.md)
+- [ETL/EDA GMaps metadata](C:\Users\54280\Documents\GitHub\proyectogrupal\Notebooks\ETL_EDA\etl_eda_metadata_gmaps.ipynb)
+- [ETL/EDA GMaps reviews]()
+- [ETL/EDA Yelp]()
+
