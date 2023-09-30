@@ -15,9 +15,19 @@ sudo pip install -r /home/henry_grupo10_v1/0_scripts/python_requirements.txt
 deactivate
 
 # instalamos entorno de R
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+# update indices
+sudo apt update -qq
+# install two helper packages we need
+sudo apt install --no-install-recommends software-properties-common dirmngr
+# add the signing key (by Michael Rutter) for these repos
+# To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc 
+# Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+# add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 sudo apt install r-base -y && sudo apt update #&& sudo apt upgrade -y
+sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
+sudo apt-get install r-cran-tidyverse && sudo apt-get install r-cran-tidycensus 
 cd /home/henry_grupo10_v1/0_scripts
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
 sudo Rscript r_requirements.R
