@@ -5,20 +5,21 @@ sudo mkdir 0_scripts 1_data && cd 1_data
 sudo mkdir 1_external 2_pipeline 3_output
 cd /home/henry_grupo10_v1/0_scripts
 sudo wget -O python_requirements.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_requirements.txt
+sudo apt autoremove
 cd ~
 
 # creamos entorno de python
 sudo apt install python3.8-venv && sudo apt update && sudo apt upgrade -y
 sudo python3 -m venv /home/henry_grupo10_v1/env_etl
 source /home/henry_grupo10_v1/env_etl/bin/activate
-sudo pip install -r /home/henry_grupo10_v1/0_scripts/python_requirements.txt
+sudo pip install -r /home/henry_grupo10_v1/0_scripts/python_requirements.txt -y
 deactivate
 
 # instalamos entorno de R
 # update indices
 sudo apt update -qq
 # install two helper packages we need
-sudo apt install --no-install-recommends software-properties-common dirmngr
+sudo apt install software-properties-common dirmngr
 # add the signing key (by Michael Rutter) for these repos
 # To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc 
 # Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9
