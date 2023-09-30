@@ -20,7 +20,8 @@ sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_
 sudo apt install r-base -y && sudo apt update #&& sudo apt upgrade -y
 cd /home/henry_grupo10_v1/0_scripts
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
-Rscript r_requirements.R
+sudo Rscript r_requirements.R
+cd ~
 sudo tree /home/henry_grupo10_v1/1_data
 
 #sudo mkdir 2_ml && cd ~/2_ml
