@@ -1,6 +1,8 @@
 # which gcloud
 sudo rm -rf *
-sudo apt update -qq -y && sudo apt upgrade -qq -y && sudo apt install python3-pip -qq -y && sudo apt-get install tree -qq -y
+sudo apt update -qq -y && sudo apt upgrade -qq -y
+sudo apt-get install tree -qq -y && sudo apt install rename  -qq -y
+sudo apt install python3-pip -qq -y
 sudo mkdir 0_scripts 1_data && cd 1_data
 sudo mkdir 1_external 2_pipeline 3_output
 cd /home/henry_grupo10_v1/0_scripts
