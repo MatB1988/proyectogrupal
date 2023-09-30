@@ -1,0 +1,30 @@
+import os
+import glob
+import json
+import pandas as pd
+
+# no modificar
+folder_data = "1_external"
+folder_pipeline = "2_pipeline"
+folder_output = "3_output"
+folder_gmaps = "gmaps"
+
+# obtenemos una lista de los archivos en pipeline
+list_files_gmaps_state_norm = glob.glob(
+    os.path.join(folder_pipeline,folder_gmaps,"*_norm.parquet"))
+list_files_gmaps_state_norm.sort()
+
+# aplicamos read_parquet a todos los archivos de la lista
+# generamos una lista de archivos parquet
+list_dfs_gmaps_state_norm = [
+    pd.read_parquet(f) for f in list_files_gmaps_state_norm
+    ]
+
+# unimos los df de la lista de archivos parquet
+data_gmaps_reviews_norm = pd.concat(
+    list_dfs_gmaps_state_norm, ignore_index=True)
+
+# guardamos el archivo grande en output
+data_gmaps_reviews_norm.to_parquet(
+    os.path.join(folder_output, "data_gmaps_reviews_norm.parquet")
+    )
