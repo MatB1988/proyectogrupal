@@ -8,12 +8,13 @@ folder_data = "1_external"
 folder_pipeline = "2_pipeline"
 folder_output = "3_output"
 folder_gmaps = "gmaps"
+folder_reviews = "reviews_estados"
 
 # extraemos nombres de cada estado segun nombre de carpeta
 state_name = pd.DataFrame(
     pd.DataFrame(
         os.listdir(
-            os.path.join(folder_data,folder_gmaps))).rename(
+            os.path.join(folder_data,folder_gmaps,folder_reviews))).rename(
                 columns={0:"state"})["state"].str.split("-").str[1])
 
 # indentificamos las columnas de interes y aquellas que se deben desanidar
@@ -46,16 +47,16 @@ for i in range(min(state_name.index),max(state_name.index)):
     # para facilitar el loop
     count_file = 0
     # Iterate
-    for path in os.listdir(os.path.join(folder_data,folder_gmaps,folder_state)):
+    for path in os.listdir(os.path.join(folder_data,folder_gmaps,folder_reviews,folder_state)):
         # check if current path is a file
-        if os.path.isfile(os.path.join(folder_data,folder_gmaps,folder_state,path)):
+        if os.path.isfile(os.path.join(folder_data,folder_gmaps,folder_reviews,folder_state,path)):
             count_file += 1
 
     # extraemos la informacion
     data = []
     for f in range(1, count_file):
         with open(os.path.join(
-            folder_data,folder_gmaps,folder_state, str(f) + ".json"), "r") as file:
+            folder_data,folder_gmaps,folder_reviews,folder_state, str(f) + ".json"), "r") as file:
             for line in file:
                 data.append(json.loads(line))
     gmaps_state = pd.DataFrame(data)
