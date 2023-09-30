@@ -17,9 +17,9 @@ deactivate
 
 # instalamos entorno de R
 # update indices
-sudo apt update -y
+sudo apt update
 # install two helper packages we need
-sudo apt install software-properties-common dirmngr -y
+sudo apt install software-properties-common dirmngr
 # add the signing key (by Michael Rutter) for these repos
 # To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc 
 # Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9
