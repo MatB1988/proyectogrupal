@@ -11,7 +11,7 @@ cd ~
 sudo apt install python3.8-venv && sudo apt update && sudo apt upgrade -y
 sudo python3 -m venv /home/henry_grupo10_v1/env_etl
 source /home/henry_grupo10_v1/env_etl/bin/activate
-sudo pip install -r /home/henry_grupo10_v1/0_scripts/requirements.txt
+sudo pip install -r /home/henry_grupo10_v1/0_scripts/python_requirements.txt
 deactivate
 
 # instalamos entorno de R
