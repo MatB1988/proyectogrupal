@@ -12,13 +12,11 @@ cd ~
 sudo apt install python3.8-venv
 sudo python3 -m venv /home/henry_grupo10_v1/env_etl
 source /home/henry_grupo10_v1/env_etl/bin/activate
-sudo pip install -r /home/henry_grupo10_v1/0_scripts/python_requirements.txt -y
+sudo pip install -r /home/henry_grupo10_v1/0_scripts/python_requirements.txt
 deactivate
 
 # instalamos entorno de R
-# update indices
 sudo apt update
-# install two helper packages we need
 sudo apt install software-properties-common dirmngr
 # add the signing key (by Michael Rutter) for these repos
 # To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc 
