@@ -12,6 +12,22 @@ Nuestro objetivo principal consiste en identificar patrones y tendencias en las 
   <img src="https://i.ibb.co/6R69v44/Proyecto-Grupal.png" height="300">
 </p>
 
+- de la Fuente Javier:
+  - [Linkedin]()
+  - [GitHub]()
+- Basso Matias:
+  - [Linkedin](https://www.linkedin.com/in/matiasebasso/)
+  - [GitHub](https://github.com/MatB1988)
+- Melo Javier:
+  - [Linkedin]()
+  - [GitHub]()
+- Rubianes Alfonzo:
+  - [Linkedin]()
+  - [GitHub]()
+- Valderrama Manuel:
+  - [Linkedin]()
+  - [GitHub]()
+
 ## **Nuestro desafío** 📣
 
 En calidad de consultora de análisis de datos, hemos sido seleccionadas por la productora de entretenimiento de un influyente conglomerado mediático para colaborar en el reality show "Restaurant Rescue," el cual se desarrollara para unas áreas especificas. 
