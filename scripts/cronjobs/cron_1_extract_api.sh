@@ -1,1 +1,1 @@
-cd /home/henry_grupo10_v1/1_data_extract && sudo wget -O extract_api.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/2_extract_datoscrudos_api.py && sudo extract_api.py
+cd /home/henry_grupo10_v1/1_data_extract && sudo wget -O extract_api.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/2_extract_datoscrudos_api.py && sudo python extract_api.py
