@@ -22,11 +22,11 @@ client = storage.Client.from_service_account_json(SERVICE_ACCOUNT_FILE)
 drive_service = build('drive', 'v3', credentials=credentials)
 
 # Set up the Google Cloud Storage bucket
-bucket_name = 'your-bucket-name'
+bucket_name = 'datos_crudos'
 bucket = client.get_bucket(bucket_name)
 
 # Get the file ID of the file you want to copy
-file_id = 'your-file-id'
+file_id = '19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6'
 
 # Get the file metadata
 file = drive_service.files().get(fileId=file_id).execute()
