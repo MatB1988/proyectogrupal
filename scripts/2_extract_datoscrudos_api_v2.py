@@ -8,10 +8,20 @@ from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
 
 
-# Authenticate with Google Drive API
-creds, _ = google.auth.default()
+# Set up the credentials for the Google Drive API
+SCOPES = ['https://www.googleapis.com/auth/drive']
+SERVICE_ACCOUNT_FILE = '/home/henry_grupo10_v1/0_scripts/extreme-unison-399121-cadd77c555ca.json'
 
-drive_service = build('drive', 'v3', credentials=creds)
+credentials = None
+try:
+    credentials = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+except ImportError:
+    print('Unable to load credentials')
+    exit(1)
+
+
+drive_service = build('drive', 'v3', credentials=credentials)
 
 # ID of the Google Drive folder you want to download
 folder_id = '19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6'
