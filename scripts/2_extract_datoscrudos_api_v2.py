@@ -1,7 +1,12 @@
-import os
+from __future__ import print_function
+
+import io
+
 import google.auth
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
+
 
 # Authenticate with Google Drive API
 creds, _ = google.auth.default()
