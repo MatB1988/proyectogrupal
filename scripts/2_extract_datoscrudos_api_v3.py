@@ -4,8 +4,15 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from google.oauth2 import service_account
 
-credential_json = '/home/henry_grupo10_v1/0_scripts/extreme-unison-399121-cadd77c555ca.json'
-credentials = service_account.Credentials.from_service_account_info(credential_json)
+# Specify the path to your JSON key file
+credentials_path = '/home/henry_grupo10_v1/0_scripts/extreme-unison-399121-cadd77c555ca.json'
+
+# Load the credentials from the JSON file
+credentials = service_account.Credentials.from_service_account_file(credentials_path, scopes=['https://www.googleapis.com/auth/drive'])
+
+# Use the 'credentials' object in your code to authenticate with Google Drive API
+
+# Authenticate with Google Drive API
 drive_service = build('drive', 'v3', credentials=credentials)
 
 folderId = 'https://drive.google.com/drive/folders/19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6'
