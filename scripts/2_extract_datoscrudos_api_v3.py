@@ -15,7 +15,7 @@ credentials = service_account.Credentials.from_service_account_file(credentials_
 # Authenticate with Google Drive API
 drive_service = build('drive', 'v3', credentials=credentials)
 
-folderId = 'https://drive.google.com/drive/folders/19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6'
+folderId = '19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6'
 outputFolder = 'output'
 
 # Create folder if not existing
