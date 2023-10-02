@@ -1,53 +1,66 @@
+"""
+Copyright 2022 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+# [START drive_download_file]
+
 from __future__ import print_function
 
 import io
 
-from google.oauth2 import service_account
+import google.auth
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
 
 
-# Set up the credentials for the Google Drive API
-SCOPES = ['https://www.googleapis.com/auth/drive']
-SERVICE_ACCOUNT_FILE = '/home/henry_grupo10_v1/0_scripts/extreme-unison-399121-cadd77c555ca.json'
+def download_file(real_file_id):
+    """Downloads a file
+    Args:
+        real_file_id: ID of the file to download
+    Returns : IO object with location.
 
-credentials = None
-try:
-    credentials = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-except ImportError:
-    print('Unable to load credentials')
-    exit(1)
+    Load pre-authorized user credentials from the environment.
+    TODO(developer) - See https://developers.google.com/identity
+    for guides on implementing OAuth2 for the application.
+    """
+    creds, _ = google.auth.default()
+
+    try:
+        # create drive api client
+        service = build('drive', 'v3', credentials=creds)
+
+        file_id = real_file_id
+
+        # pylint: disable=maybe-no-member
+        request = service.files().get_media(fileId=file_id)
+        file = io.BytesIO()
+        downloader = MediaIoBaseDownload(file, request)
+        done = False
+        while done is False:
+            status, done = downloader.next_chunk()
+            print(F'Download {int(status.progress() * 100)}.')
+
+    except HttpError as error:
+        print(F'An error occurred: {error}')
+        file = None
+
+    return file.getvalue()
 
 
-drive_service = build('drive', 'v3', credentials=credentials)
+if __name__ == '__main__':
+    download_file(real_file_id='1KuPmvGq8yoYgbfW74OENMCB5H0n_2Jm9')
+# [END drive_download_file]
 
-# ID of the Google Drive folder you want to download
-folder_id = '19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6'
-
-# Destination directory where you want to save the folder
-destination_dir = '/home/henry_grupo10_v1/1_data_extract'
-
-def download_folder(service, folder_id, destination_dir):
-    results = service.files().list(q=f"'{folder_id}' in parents",
-                                   fields="files(id, name, mimeType)").execute()
-    items = results.get('files', [])
-
-    for item in items:
-        if item['mimeType'] == 'application/vnd.google-apps.folder':
-            # Recursively download subfolders
-            subfolder_dest = os.path.join(destination_dir, item['name'])
-            os.makedirs(subfolder_dest, exist_ok=True)
-            download_folder(service, item['id'], subfolder_dest)
-        else:
-            file_dest = os.path.join(destination_dir, item['name'])
-            request = service.files().get_media(fileId=item['id'])
-            fh = open(file_dest, 'wb')
-            downloader = MediaIoBaseDownload(fh, request)
-            done = False
-            while not done:
-                status, done = downloader.next_chunk()
-                print(f"Downloading {item['name']} ({int(status.progress() * 100)}%)")
-
-download_folder(drive_service, folder_id, destination_dir)
+download_file('1TI-SsMnZsNP6t930olEEWbBQdo_yuIZF')
