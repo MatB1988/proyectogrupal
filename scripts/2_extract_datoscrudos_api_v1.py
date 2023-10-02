@@ -4,7 +4,7 @@ from googleapiclient.errors import HttpError
 from google.cloud import storage
 
 # Set up the credentials for the Google Drive API
-SCOPES = ['https://www.googleapis.com/auth/drive.appfolder']
+SCOPES = ['https://www.googleapis.com/auth/drive']
 SERVICE_ACCOUNT_FILE = '/home/henry_grupo10_v1/0_scripts/extreme-unison-399121-cadd77c555ca.json'
 
 credentials = None
