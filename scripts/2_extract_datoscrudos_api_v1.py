@@ -26,7 +26,7 @@ bucket_name = 'datos_crudos'
 bucket = client.get_bucket(bucket_name)
 
 # Get the file ID of the file you want to copy
-file_id = '19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6'
+file_id = '1mwNNdOMSNty6WumYdH9FJNJZJYQ6oD1c'
 
 # Get the file metadata
 file = drive_service.files().get(fileId=file_id).execute()
