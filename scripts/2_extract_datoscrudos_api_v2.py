@@ -60,7 +60,5 @@ def download_file(real_file_id):
 
 
 if __name__ == '__main__':
-    download_file(real_file_id='1KuPmvGq8yoYgbfW74OENMCB5H0n_2Jm9')
+    download_file(real_file_id='1mwNNdOMSNty6WumYdH9FJNJZJYQ6oD1c')
 # [END drive_download_file]
-
-download_file('1TI-SsMnZsNP6t930olEEWbBQdo_yuIZF')
