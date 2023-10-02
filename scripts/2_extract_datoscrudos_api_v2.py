@@ -3,7 +3,9 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 
 # Authenticate with Google Drive API
-drive_service = build('drive', 'v3', credentials=None)
+creds, _ = google.auth.default()
+
+drive_service = build('drive', 'v3', credentials=creds)
 
 # ID of the Google Drive folder you want to download
 folder_id = '19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6'
