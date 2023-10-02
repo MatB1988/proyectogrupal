@@ -16,7 +16,7 @@ credentials = service_account.Credentials.from_service_account_file(credentials_
 drive_service = build('drive', 'v3', credentials=credentials)
 
 # ID of the Google Drive folder you want to download
-folder_id = '1TI-SsMnZsNP6t930olEEWbBQdo_yuIZF'
+folder_id = '1olnuKLjT8W2QnCUUwh8uDuTTKVZyxQ0Z'
 
 # Destination directory where you want to save the folder
 destination_dir = '/home/henry_grupo10_v1/1_data_extract'
