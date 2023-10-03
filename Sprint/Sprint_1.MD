@@ -26,6 +26,41 @@ Después de un análisis exhaustivo, optamos por Google Cloud, ya que nos ofrec�
 
 **Resumen de la Elección**
 - 🌐 Plataforma Cloud: Google Cloud Platform (GCP)
+  - Almacenamiento: 
+    - GC storage
+    - GC big query
+  - Procesamiento: 
+    - GC Compute Engine
+  - Visualizacion: 
+    - GC Looker
 - 🐍 Lenguaje de Programación: Python
+   - Librerias: 
+      - Pandas
+      - Numpy
+      - Matplotlib
+      - Seaborn
+  - Modelos de machine learning:
+    -  Scikit-learn
+    -  Redes Neurales
+    -  Lenguaje Natural
 
 ### Definicion de roles:
+
+Para esta etapa, debimos asignar roles a cada miembro, lo cual logramos mediante una discusión conjunta en la que consensuamos en qué rol nos sentíamos más cómodos.
+
+Data Engineer:
+ - Matías Basso
+ - Javier de la Fuente
+  
+Data Analytics:
+ - Alfonzo Rubianes
+
+Data Science:
+ - Javier Melo
+ - Manuel Valderrama
+
+### Esquema de trabajo:
+
+### Pruebas Google Cloud:
+
+### Anteo del KPI y tablero final:
