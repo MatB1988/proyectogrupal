@@ -12,21 +12,11 @@ Nuestro objetivo principal consiste en identificar patrones y tendencias en las 
   <img src="https://i.ibb.co/6R69v44/Proyecto-Grupal.png" height="300">
 </p>
 
-- de la Fuente Javier:
-  - [Linkedin]()
-  - [GitHub]()
-- Basso Matias:
-  - [Linkedin](https://www.linkedin.com/in/matiasebasso/)
-  - [GitHub](https://github.com/MatB1988)
-- Melo Javier:
-  - [Linkedin]()
-  - [GitHub]()
-- Rubianes Alfonzo:
-  - [Linkedin]()
-  - [GitHub]()
-- Valderrama Manuel:
-  - [Linkedin]()
-  - [GitHub]()
+
+|               | **de la Fuente Javier** |**Basso Matias**| **Melo Javier** |**Rubianes Alfonzo** |**Valderrama Manuel** |
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+|  **GitHub**   |[LINK](https://github.com/dlfjavier)|[LINK](https://github.com/MatB1988)|[SinLink](javi_melo)|[SinLink](rubianes_algonzo)|[SinLink](valderrama_manuel)|
+| **Linkedin**  |[LINK](https://www.linkedin.com/in/javier-de-la-fuente-61768518/)|[LINK](https://www.linkedin.com/in/matiasebasso/)|[LINK](https://www.linkedin.com/in/javiermelogutierrez-dataanalyst/)|[LINK](https://www.linkedin.com/in/alfonzo-rubianes-gravier-a250253a/)|[SinLink](valderrama_manuel)
 
 ## **Nuestro desafío** 📣
 
