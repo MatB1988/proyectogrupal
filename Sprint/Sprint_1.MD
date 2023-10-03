@@ -20,13 +20,47 @@ Nuestro enfoque se centra en medir la satisfacción, lealtad y popularidad de lo
 
 ### Investigacion de estar tecnologico
 
-
 Como parte del primer Sprint, nos enfrentamos al desafío de decidir si debíamos adoptar una estrategia basada en la nube (Cloud) o en Big Data. Nuestra primera decisión fue optar por un modelo en la nube, lo que nos llevó a investigar las principales opciones disponibles, como Google Cloud, Azure y AWS.
 
 Después de un análisis exhaustivo, optamos por Google Cloud, ya que nos ofrecía la posibilidad de aprovechar al máximo los recursos disponibles para todos los participantes del proyecto, lo que mejor se adaptaba a nuestros requerimientos. Esto también influyó en nuestra elección de utilizar Python, ya que Google Cloud no admite Spark.
 
 **Resumen de la Elección**
 - 🌐 Plataforma Cloud: Google Cloud Platform (GCP)
+  - Almacenamiento: 
+    - GC storage
+    - GC big query
+  - Procesamiento: 
+    - GC Compute Engine
+  - Visualizacion: 
+    - GC Looker
 - 🐍 Lenguaje de Programación: Python
+   - Librerias: 
+      - Pandas
+      - Numpy
+      - Matplotlib
+      - Seaborn
+  - Modelos de machine learning:
+    -  Scikit-learn
+    -  Redes Neurales
+    -  Lenguaje Natural
 
 ### Definicion de roles:
+
+Para esta etapa, debimos asignar roles a cada miembro, lo cual logramos mediante una discusión conjunta en la que consensuamos en qué rol nos sentíamos más cómodos.
+
+Data Engineer:
+ - Matías Basso
+ - Javier de la Fuente
+  
+Data Analytics:
+ - Alfonzo Rubianes
+
+Data Science:
+ - Javier Melo
+ - Manuel Valderrama
+
+### Esquema de trabajo:
+
+### Pruebas Google Cloud:
+
+### Anteo del KPI y tablero final:
