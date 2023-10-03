@@ -8,7 +8,9 @@ from google.oauth2 import service_account
 credentials_path = '/home/henry_grupo10_v1/0_scripts/extreme-unison-399121-cadd77c555ca.json'
 
 # Load the credentials from the JSON file
-credentials = service_account.Credentials.from_service_account_file(credentials_path, scopes=['https://www.googleapis.com/auth/drive'])
+credentials = service_account.Credentials.from_service_account_file(
+    credentials_path,
+    scopes=['https://www.googleapis.com/auth/drive'])
 
 # Use the 'credentials' object in your code to authenticate with Google Drive API
 
@@ -22,7 +24,7 @@ folder_id = '1olnuKLjT8W2QnCUUwh8uDuTTKVZyxQ0Z'
 destination_dir = '/home/henry_grupo10_v1/1_data_extract'
 
 def download_folder(service, folder_id, destination_dir):
-    results = service.files().list(q=f"'{folder_id}' in parents",
+    results = drive_service.files().list(q=f"'{folder_id}' in parents",
                                    fields="files(id, name, mimeType)").execute()
     items = results.get('files', [])
 

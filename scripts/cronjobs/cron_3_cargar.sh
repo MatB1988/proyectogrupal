@@ -1,1 +1,2 @@
-gsutil rm -r gs://1_etl_output/ && gcloud storage cp /home/henry_grupo10_v1/1_etl/1_data/3_output/* gs://1_etl_output/ --recursive
+#gcloud storage cp /home/henry_grupo10_v1/1_data_extract/* gs://0_datoscrudos/ --recursive
+gsutil -m rsync -r /home/henry_grupo10_v1/1_data_extract/* gs://0_datoscrudos/
