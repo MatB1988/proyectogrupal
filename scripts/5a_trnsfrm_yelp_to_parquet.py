@@ -8,24 +8,34 @@ import fastparquet as fp
 import numpy as np
 
 # Ruta a la carpeta Yelp
-yelp_folder = 'yelp'
+#yelp_folder = 'yelp'
+
+# no modificar
+folder_data = "1_data_extract"
+folder_pipeline = "2_pipeline"
+folder_output = "3_output"
+yelp_folder = "yelp"
 
 file_to_df = 'business.pkl'
 
+# edit manuel: echo en linux
+os.system("Proceso iniciado")
+
 # Leer el archivo business.pkl
-df_business = pd.read_pickle(os.path.join(yelp_folder, file_to_df))
+df_business = pd.read_pickle(
+    os.path.join(folder_data,yelp_folder,file_to_df))
 
 business_df = df_business.iloc[:, :14]
 
 # Verificar si el directorio 'parquet' existe, y si no, crearlo
-if not os.path.exists('parquet'):
-    os.makedirs('parquet')
+if not os.path.exists(os.path.join(folder_pipeline,yelp_folder,'parquet')):
+    os.makedirs(os.path.join(folder_pipeline,yelp_folder,'parquet'))
 
 # Obtener el nombre del archivo original sin la extensión
 df_2_file_name = 'business.pkl'.split('.')[0]
 
 # Guardar el DataFrame en formato Parquet en el directorio 'parquet' con el nombre del archivo original
-file_path = os.path.join('parquet', f'{df_2_file_name}.parquet')
+file_path = os.path.join(folder_pipeline,yelp_folder,'parquet', f'{df_2_file_name}.parquet')
 
 # Guardar el DataFrame en formato Parquet usando fastparquet
 business_df.to_parquet(file_path, engine='fastparquet')
@@ -33,7 +43,7 @@ business_df.to_parquet(file_path, engine='fastparquet')
 
 # checkin.json to parquet
 # Ruta al archivo checkin.json dentro de la carpeta Yelp
-checkin_path = os.path.join('yelp', 'checkin.json')
+checkin_path = os.path.join(folder_data,yelp_folder, 'checkin.json')
 
 # Lista para almacenar los DataFrames
 checkin_dfs = []
@@ -49,21 +59,22 @@ with open(checkin_path, 'r') as checkin_file:
 checkin_df = pd.concat(checkin_dfs, ignore_index=True)
 
 # Verificar si el directorio 'parquet' existe, y si no, crearlo
-if not os.path.exists('parquet'):
-    os.makedirs('parquet')
+# edit manuel: ya se hizo arriba
+#if not os.path.exists(os.path.join(folder_pipeline,yelp_folder,'parquet')):
+#    os.makedirs(os.path.join(folder_pipeline,yelp_folder,'parquet'))
 
 # Obtener el nombre del archivo original sin la extensión
 df_2_file_name = 'checkin.json'.split('.')[0]
 
 # Guardar el DataFrame en formato Parquet en el directorio 'parquet' con el nombre del archivo original
-file_path = os.path.join('parquet', f'{df_2_file_name}.parquet')
+file_path = os.path.join(folder_pipeline,yelp_folder,'parquet', f'{df_2_file_name}.parquet')
 
 # A continuación, se guarda el DataFrame en formato Parquet usando fastparquet
 checkin_df.to_parquet(file_path, engine='fastparquet')
 
 #tip.json to parquet
 # Ruta al archivo tip.json dentro de la carpeta Yelp
-tip_path = os.path.join('yelp', 'tip.json')
+tip_path = os.path.join(folder_data,yelp_folder,'tip.json')
 
 # Lista para almacenar los DataFrames
 tip_df = []
@@ -82,20 +93,21 @@ tip_df = pd.concat(tip_df, ignore_index=True)
 tip_df['date'] = pd.to_datetime(tip_df['date'])
 
 # Verificar si el directorio 'parquet' existe, y si no, crearlo
-if not os.path.exists('parquet'):
-    os.makedirs('parquet')
+# edit manuel: ya se hizo arriba
+#if not os.path.exists(os.path.join(folder_pipeline,yelp_folder,'parquet')):
+#    os.makedirs(os.path.join(folder_pipeline,yelp_folder,'parquet'))
 
 # Obtener el nombre del archivo original sin la extensión
 df_2_file_name = 'tip.json'.split('.')[0]
 
 # Guardar el DataFrame en formato Parquet en el directorio 'parquet' con el nombre del archivo original
-file_path = os.path.join('parquet', f'{df_2_file_name}.parquet')
+file_path = os.path.join(folder_pipeline,yelp_folder,'parquet', f'{df_2_file_name}.parquet')
 
 # A continuación, se guarda el DataFrame en formato Parquet usando fastparquet
 tip_df.to_parquet(file_path, engine='fastparquet')
 
 # Ruta del archivo original
-archivo_original = 'yelp/review.json'
+archivo_original = os.path.join(folder_data,yelp_folder,'review.json')
 
 # Número de líneas por archivo parquet
 lineas_por_archivo = 1000000
@@ -105,8 +117,8 @@ df_actual = []
 lista_df_reviews = []  # Lista para almacenar DataFrames
 
 # Crear el directorio parquet y pq_review si no existen
-if not os.path.exists('parquet/pq_review'):
-    os.makedirs('parquet/pq_review')
+if not os.path.exists(os.path.join(folder_pipeline,yelp_folder,'parquet','pq_review')):
+    os.makedirs(os.path.join(folder_pipeline,yelp_folder,'parquet','pq_review'))
 
 # Leer el archivo original y escribir archivos Parquet
 with open(archivo_original, 'r', encoding='utf-8') as original_file:
@@ -127,7 +139,7 @@ with open(archivo_original, 'r', encoding='utf-8') as original_file:
             lista_df_reviews.append(df)
 
             # Nombre del archivo parquet
-            nombre_archivo = f'parquet/pq_review/review_{str(numero_archivo).zfill(2)}.parquet'
+            nombre_archivo = f'2_pipeline/yelp/parquet/pq_review/review_{str(numero_archivo).zfill(2)}.parquet'
 
             # Guardar el DataFrame como archivo parquet
             df.to_parquet(nombre_archivo, index=False)
@@ -144,15 +156,15 @@ if df_actual:
     # Agregar el último DataFrame a la lista
     lista_df_reviews.append(df)
 
-    nombre_archivo = f'parquet/pq_review/review_{str(numero_archivo).zfill(2)}.parquet'
+    nombre_archivo = f'2_pipeline/yelp/parquet/pq_review/review_{str(numero_archivo).zfill(2)}.parquet'
     df.to_parquet(nombre_archivo, index=False)
 
 #user.parquet to pq_user(parquet)
 # Ruta al archivo Parquet original
-input_parquet_file = 'yelp/user.parquet'
+input_parquet_file = os.path.join(folder_data,yelp_folder,'user.parquet')
 
 # Directorio para guardar los archivos Parquet resultantes
-output_dir = 'parquet/pq_user'
+output_dir = os.path.join(folder_pipeline,yelp_folder,'pq_user')
 os.makedirs(output_dir, exist_ok=True)
 
 # Tamaño del lote (número de filas por archivo Parquet)
@@ -183,5 +195,7 @@ while True:
     # Incrementa el contador de archivos
     file_counter += 1
 
-print("Proceso completado.")
+#print("Proceso completado")
+# edit manuel: echo en linux
+os.system("Proceso completado")
 
