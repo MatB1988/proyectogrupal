@@ -30,14 +30,16 @@ sudo apt install software-properties-common dirmngr
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 # add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
-sudo apt install r-base -y
-sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+ -y && sudo apt update
-sudo apt-get install r-cran-tidyverse -y
-#sudo sudo apt-get build-dep install r-cran-tidycensus -y
+sudo apt install  -y r-base
+sudo add-apt-repository  -y ppa:c2d4u.team/c2d4u4.0+ && sudo apt update
+sudo apt-get install  -y r-cran-tidyverse
+sudo apt-get install -y libssl-dev && sudo apt-get install -y libudunits2-dev # tidycensus requirements
+sudo apt install -y libgdal-dev # tidycensus requirements
+#sudo apt-get build-dep install -y r-cran-tidycensus E: Unable to find a source package for install
 cd /home/henry_grupo10_v1/0_scripts
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
 sudo Rscript r_requirements.R
-sudo apt update -qq -y && sudo apt upgrade -qq -y
 cd ~
+sudo apt update -qq -y && sudo apt upgrade -qq -y
 pip list --local
 sudo R --version
