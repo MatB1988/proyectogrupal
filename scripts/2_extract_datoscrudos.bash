@@ -23,7 +23,7 @@ sudo gdown 1_gDjMlGEVETNIG_iixvP5IGKE9Hjy9Vu # census_api.csv
 sudo gdown 1_ohYtbNddF-M4p2xVj9XcnSd2dB2uiPa # census_vars.csv
 cd /home/henry_grupo10_v1/1_data_extract && sudo mkdir -p uscensus
 cd ~
-sudo wget -O r_us_census.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
+sudo wget -O r_us_census.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_us_census.R
 sudo Rscript r_us_census.R
 
 # actualizamos goolge storage
