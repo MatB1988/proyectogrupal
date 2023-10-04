@@ -4,8 +4,8 @@ import json
 import os
 import pyarrow as pa
 import pyarrow.parquet as pq
-import fastparquet as fp
-import numpy as np
+#import fastparquet as fp # edit manuel: no usado
+#import numpy as np # edit manuel: no usado
 
 # Ruta a la carpeta Yelp
 #yelp_folder = 'yelp'
@@ -198,4 +198,3 @@ while True:
 #print("Proceso completado")
 # edit manuel: echo en linux
 os.system("Proceso completado")
-
