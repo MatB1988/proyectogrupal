@@ -59,8 +59,41 @@ Data Science:
  - Javier Melo
  - Manuel Valderrama
 
-### Esquema de trabajo:
+### Esquema de trabajo GANTT:
+
+Tras una conversación entre todos, se planteó un plan de trabajo para abordar las tareas asignadas en el primer sprint, que abarca un período de 15 días. A continuación, se presenta una imagen que ilustra el esquema de trabajo propuesto.
+
+<p align="center">
+  <img src="https://i.ibb.co/nBN6G2n/flujo-de-trabajo.png" height="300">
+</p>
 
 ### Pruebas Google Cloud:
 
-### Anteo del KPI y tablero final:
+Comenzamos a explorar las diferentes instancias de Google Cloud, cargamos los archivos de la base de datos y examinamos cómo funciona el sistema de automatización y el trabajo en Compute Engine, utilizando las diversas interfaces disponibles en Google Cloud.
+
+<p align="center">
+  <img src="https://i.ibb.co/2Sws7k3/Whats-App-Image-2023-09-15-at-20-31-30.jpg" height="300">
+</p>
+
+### Planteo de los KPI y tablero final:
+
+Se plantea que el producto final consista en un panel de control en Looker, donde cada pestaña representará un indicador clave de rendimiento general que llamaremos "atributo". Los atributos serán los siguientes:
+
+- Atributo 1: Satisfacción
+- Atributo 2: Lealtad
+- Atributo 3: Popularidad
+
+A pesar de que cada atributo será el resultado de varios análisis, incluyendo comparativas de KPI, entre los restaurantes prospectos y las tendencias, cada atributo se considera como un indicador clave de rendimiento general.
+
+A modo de orientación, se presentó un ejemplo de lo que podría componer el primer atributo **Satisfacción**:
+
+ *KPI Satisfacción del cliente*:
+
+ - **Método 1** Red Neuronal: 
+    + Entradas: calidad de la comida, servicio al cliente, limpieza y ambiente, precio 
+    + Capa Oculta: puede consistir en varias capas intermedias de neuronas.
+    +  Salida: Puntuación de satisfacción (escala de 1 a 5, por ejemplo).
+  
+ - **Método 2** Análisis de sentimiento:
+    + Entrada: Texto de reseñas.
+    + Salida: Proporción del sentimiento de reseñas: tasa de reseñas positivas vs tasa de reseñas negativas. 
