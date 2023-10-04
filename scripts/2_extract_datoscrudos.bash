@@ -32,5 +32,3 @@ sudo Rscript r_us_census.R
 # -n not run
 #gsutil -m rsync -r -n /home/henry_grupo10_v1/1_data_extract/ gs://0_datoscrudos/
 gsutil -m rsync -r /home/henry_grupo10_v1/1_data_extract/ gs://0_datoscrudos/
-
-cd /home/henry_grupo10_v1/2_pipeline && sudo mkdir -p gmaps yelp

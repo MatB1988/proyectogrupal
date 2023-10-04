@@ -1,1 +1,0 @@
-cd ~ && sudo wget -O gmaps_reviews_cnsldr.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5_etl_gmaps_rev_2_cnsldr.py && sudo python3 gmaps_reviews_cnsldr.py

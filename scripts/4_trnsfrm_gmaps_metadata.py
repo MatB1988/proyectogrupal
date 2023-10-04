@@ -5,15 +5,22 @@ import numpy as np
 import pandas as pd
 
 # Ruta de la carpeta que contiene los archivos JSON
-ruta_datos = "C:/Users/54280/Documents/GitHub/proyectogrupal/Pruebas/metadata-sitios"
+#ruta_datos = "C:/Users/54280/Documents/GitHub/proyectogrupal/Pruebas/metadata-sitios"
+
+# no modificar
+folder_data = "1_data_extract"
+folder_pipeline = "2_pipeline"
+folder_output = "3_output"
+folder_gmaps = "gmaps"
+folder_metadata = "metadata-sitios"
 
 # Lista para almacenar los DataFrames de datos JSON
 data_frames = []
 
 # Itero sobre los archivos JSON en la carpeta
-for filename in os.listdir(ruta_datos):
+for filename in os.listdir(os.path.join(folder_data,folder_gmaps,folder_metadata)):
     if filename.endswith(".json"):
-        file_path = os.path.join(ruta_datos, filename)
+        file_path = os.path.join(folder_data,folder_gmaps,folder_metadata, filename)
         # Leo el archivo JSON y creo un DataFrame
         with open(file_path, 'r', encoding='utf-8') as file:
             data = pd.read_json(file, lines=True)
@@ -60,4 +67,5 @@ def categorizar_estado(row):
 df_filtrado['estado_categoria'] = df_filtrado['state'].apply(categorizar_estado)
 
 # Exporto df_filtrado para probar union por latitud y longitud con la base de yeld
-df_filtrado.to_csv('gmaps_filtrado.csv')
+df_filtrado.to_pickle(
+    os.path.join(folder_output,'gmaps_metadata_filtrado.pkl'))

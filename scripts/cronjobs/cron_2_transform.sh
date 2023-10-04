@@ -1,0 +1,1 @@
+cd ~ && sudo wget -O gmaps_reviews_cnsldr.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/6_trnsfrm_gmaps_yelp.sh
