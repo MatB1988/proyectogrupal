@@ -1,1 +1,1 @@
-gsutil -m rsync -r /home/henry_grupo10_v1/3_output/ gs://2_pipeline/
+gsutil -m rsync -r /home/henry_grupo10_v1/3_output/ gs://1_transform/

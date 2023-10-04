@@ -65,7 +65,7 @@ def categorizar_estado(row):
     else:
         return 'Specific Hours'
 
-df_filtrado['estado_categoria'] = df_filtrado['state'].copy().apply(categorizar_estado)
+df_filtrado['estado_categoria'] = df_filtrado['state'].apply(categorizar_estado).copy()
 
 # Exporto df_filtrado para probar union por latitud y longitud con la base de yeld
 df_filtrado.to_pickle(
