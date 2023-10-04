@@ -27,4 +27,4 @@ sudo wget -O r_us_census.R https://raw.githubusercontent.com/MatB1988/proyectogr
 sudo Rscript r_us_census.R
 
 # actualizamos goolge storage
-gsutil -m rsync -r /home/henry_grupo10_v1/1_data_extract/* gs://0_datoscrudos/
+gsutil rsync -r /home/henry_grupo10_v1/1_data_extract/* gs://0_datoscrudos/
