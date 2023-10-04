@@ -4,14 +4,14 @@ import json
 import pandas as pd
 
 # no modificar
-folder_data = "1_external"
+folder_data = "1_data_extract"
 folder_pipeline = "2_pipeline"
 folder_output = "3_output"
 folder_gmaps = "gmaps"
 
 # obtenemos una lista de los archivos en pipeline
 list_files_gmaps_state_norm = glob.glob(
-    os.path.join(folder_pipeline,folder_gmaps,"*_norm.parquet"))
+    os.path.join(folder_pipeline,folder_gmaps,"review-*_norm.parquet"))
 list_files_gmaps_state_norm.sort()
 
 # aplicamos read_parquet a todos los archivos de la lista

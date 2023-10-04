@@ -4,11 +4,11 @@ from datetime import datetime as dt
 import pandas as pd
 
 # no modificar
-folder_data = "1_external"
+folder_data = "1_data_extract"
 folder_pipeline = "2_pipeline"
 folder_output = "3_output"
 folder_gmaps = "gmaps"
-folder_reviews = "reviews_estados"
+folder_reviews = "reviews-estados"
 
 # extraemos nombres de cada estado segun nombre de carpeta
 state_name = pd.DataFrame(
@@ -115,7 +115,12 @@ for i in range(min(state_name.index),max(state_name.index)):
     # Removemos duplicados
     gmaps_state_norm.drop_duplicates(inplace=True)
     
+    gmaps_state_norm_filtrada = gmaps_state_norm.loc[
+        (gmaps_state_norm['user_time_year'] >= 2020) &
+        (gmaps_state_norm['user_time_month'] >= 7)
+        ].copy()
+    
     # df final por estado
     # guardamos en pipeline con el fin de alivianar la carga al RAM local
-    gmaps_state_norm.to_parquet(
+    gmaps_state_norm_filtrada.to_parquet(
         os.path.join(folder_pipeline,folder_gmaps, str(folder_state) + "_norm.parquet"))
