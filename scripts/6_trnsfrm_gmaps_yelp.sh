@@ -13,3 +13,8 @@ source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 gmaps_rev
 cd ~ && [ -f gmaps_metadata.py ] && sudo rm gmaps_metadata.py
 cd ~ && sudo wget -O gmaps_metadata.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/4_trnsfrm_gmaps_metadata.py
 source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 gmaps_metadata.py  && deactivate
+
+# yelp_2parquet.py
+cd ~ && [ -f yelp_2parquet.py ] && sudo rm yelp_2parquet.py
+cd ~ && sudo wget -O yelp_2parquet.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5a_trnsfrm_yelp_to_parquet.py
+source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_2parquet.py  && deactivate
