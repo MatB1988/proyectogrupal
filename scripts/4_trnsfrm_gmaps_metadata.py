@@ -48,7 +48,7 @@ df_exploded['category'] = df_exploded['category'].str.lower().str.strip()
 df_filtrado = df_exploded[df_exploded['category'].str.contains(patron_busqueda, case=False)]
 
 # Genero un df que contenga el los id y los nombres para que se puedan filtrar las rewiews
-df_id_gmaps = df_filtrado[['gmap_id', 'name']].copy
+df_id_gmaps = df_filtrado[['gmap_id', 'name']].copy()
 
 # Exporto un df con los id y los name para pasar al grupo que esta trabajando con  las rewiews
 df_id_gmaps.to_csv(
