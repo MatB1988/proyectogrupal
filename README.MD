@@ -39,5 +39,5 @@ En resumen, nuestro enfoque no considerar aspectos financieros u operativos. Enf
 - [Diccionario de datos](https://github.com/MatB1988/proyectogrupal/blob/main/Notebooks/ETL_EDA/Diccionario_datos.md)
 - [ETL/EDA GMaps metadata](https://github.com/MatB1988/proyectogrupal/blob/main/Notebooks/ETL_EDA/etl_eda_metadata_gmaps.ipynb)
 - [ETL/EDA GMaps reviews]()
-- [ETL/EDA Yelp]()
+- [ETL/EDA Yelp](https://github.com/MatB1988/proyectogrupal/blob/da6dc7095e2eab377b845e867f011891a009b420/Notebooks/ETL_EDA/yelp_to_parquet.ipynb)
 
