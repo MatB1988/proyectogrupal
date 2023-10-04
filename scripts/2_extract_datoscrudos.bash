@@ -1,10 +1,10 @@
 cd ~ && sudo mkdir -p 0_external 1_data_extract
 cd /home/henry_grupo10_v1/1_data_extract
-#sudo rm -rf *
+
+# if [ -d yelp ]; then rm -rf yelp; fi
 # gdrive henry: yelp
 #sudo gdown --folder https://drive.google.com/drive/folders/1TI-SsMnZsNP6t930olEEWbBQdo_yuIZF
 #sudo rename 'y/A-Z/a-z/' *
-
 # gdrive manuel
 #sudo gdown --folder https://drive.google.com/drive/folders/1ZheujPb0-kmlZEhi_dKo6Ge9o_7dUfEg
 
