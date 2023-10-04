@@ -54,7 +54,7 @@ for i in range(0,max(state_name.index)+1):
 
     # extraemos la informacion
     data = []
-    for f in range(1, count_file):
+    for f in range(1, count_file+1):
         with open(os.path.join(
             folder_data,folder_gmaps,folder_reviews,folder_state, str(f) + ".json"), "r") as file:
             for line in file:
