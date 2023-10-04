@@ -38,7 +38,5 @@ sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyect
 sudo Rscript r_requirements.R
 sudo apt update -qq -y && sudo apt upgrade -qq -y
 cd ~
-pip list
+pip list --local
 sudo R --version
-source /home/henry_grupo10_v1/env_extract/bin/activate && pip list && deactivate
-#sudo tree /home/henry_grupo10_v1/0_scripts
