@@ -33,7 +33,7 @@ En resumen, nuestro enfoque no considerar aspectos financieros u operativos. Enf
 ## **Sprint**
 
 - [Sprint 1](https://github.com/MatB1988/proyectogrupal/blob/121a5200f58ed283777462b09746c525e1790a0e/Sprint/Sprint_1.MD)
-- [Sprint 2](https://github.com/MatB1988/proyectogrupal/blob/121a5200f58ed283777462b09746c525e1790a0e/Sprint/Sprint_2.MD)
+- [Sprint 2](https://github.com/MatB1988/proyectogrupal/blob/9cafbe2ffce756bbfc1f482a3154845d8ea759d8/Sprint/Sprint_2.MD)
 
 ## **ETL y EDA**
 - [Diccionario de datos](https://github.com/MatB1988/proyectogrupal/blob/main/Notebooks/ETL_EDA/Diccionario_datos.md)
