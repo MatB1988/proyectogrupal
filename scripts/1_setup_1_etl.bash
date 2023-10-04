@@ -33,7 +33,7 @@ sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_
 sudo apt install r-base -y
 sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+ -y
 sudo apt-get install r-cran-tidyverse -y
-sudo apt-get install r-cran-sf -y && sudo apt-get install r-cran-tigris -y && sudo apt-get install r-cran-tidycensus -y
+sudo sudo apt-get build-dep r-cran-tidycensus -y
 cd /home/henry_grupo10_v1/0_scripts
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
 sudo Rscript r_requirements.R
