@@ -41,7 +41,7 @@ for i in range(0,max(state_name.index)+1):
     # para facilitar el loop para todos los estados
     state = state_name["state"][i]
     folder_state = "review-" + str(state)
-    os.system("ejecutando: " + folder_state)
+    os.system(str("ejecutando: " + folder_state))
 
     # contamos numero de archivos al interior de cada carpeta del estado
     # para facilitar el loop
