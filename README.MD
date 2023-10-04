@@ -33,11 +33,11 @@ En resumen, nuestro enfoque no considerar aspectos financieros u operativos. Enf
 ## **Sprint**
 
 - [Sprint 1](https://github.com/MatB1988/proyectogrupal/blob/121a5200f58ed283777462b09746c525e1790a0e/Sprint/Sprint_1.MD)
-- [Sprint 2](https://github.com/MatB1988/proyectogrupal/blob/121a5200f58ed283777462b09746c525e1790a0e/Sprint/Sprint_2.MD)
+- [Sprint 2](https://github.com/MatB1988/proyectogrupal/blob/9cafbe2ffce756bbfc1f482a3154845d8ea759d8/Sprint/Sprint_2.MD)
 
 ## **ETL y EDA**
 - [Diccionario de datos](https://github.com/MatB1988/proyectogrupal/blob/main/Notebooks/ETL_EDA/Diccionario_datos.md)
 - [ETL/EDA GMaps metadata](https://github.com/MatB1988/proyectogrupal/blob/main/Notebooks/ETL_EDA/etl_eda_metadata_gmaps.ipynb)
-- [ETL/EDA GMaps reviews]()
+- [ETL/EDA GMaps reviews](https://github.com/MatB1988/proyectogrupal/blob/200e751b923839d9d5c2cd6b493fa1e1378e7577/Notebooks/ETL_EDA/etl_1_gmaps_reviews_estado.ipynb)
 - [ETL/EDA Yelp](https://github.com/MatB1988/proyectogrupal/blob/da6dc7095e2eab377b845e867f011891a009b420/Notebooks/ETL_EDA/yelp_to_parquet.ipynb)
 
