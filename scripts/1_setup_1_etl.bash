@@ -13,6 +13,7 @@ sudo mkdir -p 0_scripts
 # setup para transformacion
 sudo mkdir -p 2_pipeline 3_output
 cd /home/henry_grupo10_v1/0_scripts
+[ -f python_requirements.txt ] && sudo rm python_requirements.txt
 sudo wget -O python_requirements.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_requirements.txt
 cd ~
 
