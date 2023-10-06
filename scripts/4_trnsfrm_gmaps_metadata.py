@@ -67,6 +67,8 @@ def categorizar_estado(row):
 
 df_filtrado['estado_categoria'] = df_filtrado['state'].apply(categorizar_estado).copy()
 
+df_filtrado.drop_duplicates(inplace=True)
+
 # Exporto df_filtrado para probar union por latitud y longitud con la base de yeld
 df_filtrado.to_parquet(
     os.path.join(folder_output,'gmaps_metadata_filtrado.parquet'))

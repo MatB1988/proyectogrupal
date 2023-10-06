@@ -9,7 +9,7 @@ cd ~ && [ -f gmaps_reviews_cnsldr.py ] && sudo rm gmaps_reviews_cnsldr.py
 cd ~ && sudo wget -O gmaps_reviews_cnsldr.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/3b_trnsfrm_gmaps_reviews_cnsldr.py
 source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 gmaps_reviews_cnsldr.py  && deactivate
 
-# gmaps_reviews_cnsldr.py
+# gmaps_metadata.py
 cd ~ && [ -f gmaps_metadata.py ] && sudo rm gmaps_metadata.py
 cd ~ && sudo wget -O gmaps_metadata.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/4_trnsfrm_gmaps_metadata.py
 source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 gmaps_metadata.py  && deactivate
