@@ -19,7 +19,7 @@ yelp_folder = "yelp"
 file_to_df = 'business.pkl'
 
 # edit manuel: echo en linux
-os.system("Proceso iniciado")
+os.system("Iniciando")
 
 # Leer el archivo business.pkl
 df_business = pd.read_pickle(
@@ -197,4 +197,4 @@ while True:
 
 #print("Proceso completado")
 # edit manuel: echo en linux
-os.system("Proceso completado")
+os.system("Completado")
