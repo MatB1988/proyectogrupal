@@ -26,6 +26,11 @@ cd ~
 sudo wget -O r_us_census.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_us_census.R
 sudo Rscript r_us_census.R
 
+cd /home/henry_grupo10_v1/downloads
+sudo wget https://www2.census.gov/geo/tiger/TIGER2020/ZCTA520/tl_2020_us_zcta520.zip
+sudo mkdir -p /home/henry_grupo10_v1/1_data_extract/uscensus/zcta_geo
+sudo unzip tl_2020_us_zcta520.zip -d /home/henry_grupo10_v1/1_data_extract/uscensus/zcta_geo/
+
 # actualizamos cloud storage; flags:
 # -m  multi-threaded/multi-processing
 # -r recursive
