@@ -86,7 +86,9 @@ us_places = df_filtrado[(df_filtrado['Latitude'] >= latitud_min) &
 
 # Asigno el resultado del filtrado nuevamente a df_filtrado para actualizarlo
 df_filtrado = us_places
-#df_filtrado.drop_duplicates(inplace=True) # TypeError: unhashable type: 'list'
+
+# Creo una columna 'point' a partir de 'latitude' y 'longitude', para poder usar los mapas en looker
+df_filtrado['point'] = df_filtrado.apply(lambda row: f"POINT({row['longitude']} {row['latitude']})", axis=1)
 
 # Exporto df_filtrado para probar union por latitud y longitud con la base de yeld
 df_filtrado.to_parquet(
