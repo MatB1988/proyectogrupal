@@ -2,7 +2,9 @@
 #which gcloud
 #sudo rm -rf *
 sudo apt update -qq -y && sudo apt upgrade -qq -y
-sudo apt-get install tree -qq -y && sudo apt install rename  -qq -y
+sudo apt-get install tree -qq -y
+sudo apt install rename  -qq -y
+#sudo apt install unzip  -qq -y
 sudo apt install pip -qq -y
 #sudo pip install -U --no-cache-dir gdown
 sudo pip install gdown
@@ -44,3 +46,11 @@ cd ~
 sudo apt update -qq -y && sudo apt upgrade -qq -y
 pip list --local
 sudo R --version
+
+# Anaconda
+sudo mkdir -p downloads && cd downloads
+sudo sudo wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
+#-b flag Batch mode with no PATH modifications to ~/.bashrc.
+# Assumes that you agree to the license agreement.
+# Does not edit the .bashrc or .bash_profile files.
+cd ~ && bash /home/henry_grupo10_v1/downloads/Anaconda3-2023.09-0-Linux-x86_64.sh -b 

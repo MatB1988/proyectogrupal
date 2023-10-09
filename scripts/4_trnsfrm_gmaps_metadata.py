@@ -51,6 +51,7 @@ df_filtrado = df_exploded[df_exploded['category'].str.contains(patron_busqueda, 
 df_id_gmaps = df_filtrado[['gmap_id', 'name']].copy()
 
 # Exporto un df con los id y los name para pasar al grupo que esta trabajando con  las rewiews
+df_id_gmaps.drop_duplicates(inplace=True)
 df_id_gmaps.to_csv(
     os.path.join(folder_output,'df_id_gmaps.csv'))
 
@@ -85,7 +86,8 @@ us_places = df_filtrado[(df_filtrado['Latitude'] >= latitud_min) &
 
 # Asigno el resultado del filtrado nuevamente a df_filtrado para actualizarlo
 df_filtrado = us_places
+#df_filtrado.drop_duplicates(inplace=True) # TypeError: unhashable type: 'list'
 
 # Exporto df_filtrado para probar union por latitud y longitud con la base de yeld
-df_filtrado.to_pickle(
-    os.path.join(folder_output,'gmaps_metadata_filtrado.pkl'))
+df_filtrado.to_parquet(
+    os.path.join(folder_output,'gmaps_metadata_filtrado.parquet'))
