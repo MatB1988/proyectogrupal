@@ -67,6 +67,25 @@ def categorizar_estado(row):
 
 df_filtrado['estado_categoria'] = df_filtrado['state'].apply(categorizar_estado).copy()
 
+# Elimino las filas donde 'estado_categoria' es 'Permanently closed'
+df_filtrado = df_filtrado[df_filtrado['estado_categoria'] != 'Permanently closed']
+
+# Voy a eliminar las filas que esten fuera de estados unidos 
+# Defino los límites geográficos de los Estados Unidos
+latitud_min = 24.396308
+latitud_max = 49.384358
+longitud_min = -125.000000
+longitud_max = -66.934570
+
+# Filtro lugares dentro de los límites geográficos de los Estados Unidos
+us_places = df_filtrado[(df_filtrado['Latitude'] >= latitud_min) &
+               (df_filtrado['Latitude'] <= latitud_max) &
+               (df_filtrado['Longitude'] >= longitud_min) &
+               (df_filtrado['Longitude'] <= longitud_max)]
+
+# Asigno el resultado del filtrado nuevamente a df_filtrado para actualizarlo
+df_filtrado = us_places
+
 # Exporto df_filtrado para probar union por latitud y longitud con la base de yeld
 df_filtrado.to_pickle(
     os.path.join(folder_output,'gmaps_metadata_filtrado.pkl'))
