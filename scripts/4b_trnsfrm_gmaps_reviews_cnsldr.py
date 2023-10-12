@@ -31,7 +31,16 @@ data_gmaps_reviews_norm_filtrado = data_gmaps_reviews_norm.loc[
     data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'].to_list())
     ]
 
+data_gmaps_geoloc = pd.read_csv(
+    os.path.join(folder_output,'data_gmaps_geoloc.csv'))
+
+data_gmaps_reviews_norm_filtrado_geo = pd.merge(
+    left=data_gmaps_reviews_norm_filtrado,
+    right=data_gmaps_geoloc,
+    how='left'
+    )
+
 # guardamos el archivo grande en output
-data_gmaps_reviews_norm_filtrado.to_parquet(
+data_gmaps_reviews_norm_filtrado_geo.to_parquet(
     os.path.join(folder_output, "data_gmaps_reviews_norm.parquet")
     )
