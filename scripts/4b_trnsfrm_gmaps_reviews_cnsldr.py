@@ -6,8 +6,8 @@ import pandas as pd
 # no modificar
 folder_data = "1_data_extract"
 folder_pipeline = "2_pipeline"
-folder_output = "3_output"
 folder_gmaps = "gmaps"
+folder_output = "3_output"
 
 # obtenemos una lista de los archivos en pipeline
 list_files_gmaps_state_norm = glob.glob(
@@ -30,6 +30,13 @@ df_id_gmaps = pd.read_csv(
 data_gmaps_reviews_norm_filtrado = data_gmaps_reviews_norm.loc[
     data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'].to_list())
     ]
+
+data_gmaps_geoloc = data_gmaps_reviews_norm_filtrado[
+    "gmap_id","state_name","state_code","county_name","zcta5_geoid"]
+data_gmaps_geoloc.to_csv(
+    os.path.join(folder_output, "data_gmaps_geoloc.csv")
+    ,index=False
+    )
 
 # guardamos el archivo grande en output
 data_gmaps_reviews_norm_filtrado.to_parquet(
