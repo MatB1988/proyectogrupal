@@ -61,7 +61,7 @@ longitud_min = -125.000000
 longitud_max = -66.934570
 
 # Filtro lugares dentro de los límites geográficos de los Estados Unidos
-# Asigno el resultado a un nuevo df
+# Asigno el resultado a una variable dummy
 data_gmaps_metadata_zcta_usa['us_continente'] = np.where((
     (data_gmaps_metadata_zcta_usa['latitude'] >= latitud_min) &
     (data_gmaps_metadata_zcta_usa['latitude'] <= latitud_max) &

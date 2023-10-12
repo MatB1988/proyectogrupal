@@ -24,7 +24,14 @@ list_dfs_gmaps_state_norm = [
 data_gmaps_reviews_norm = pd.concat(
     list_dfs_gmaps_state_norm, ignore_index=True)
 
+df_id_gmaps = pd.read_csv(
+    os.path.join(folder_output,'df_id_gmaps.csv'))
+
+data_gmaps_reviews_norm_filtrado = data_gmaps_reviews_norm.loc[
+    data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'])
+    ]
+
 # guardamos el archivo grande en output
-data_gmaps_reviews_norm.to_parquet(
+data_gmaps_reviews_norm_filtrado.to_parquet(
     os.path.join(folder_output, "data_gmaps_reviews_norm.parquet")
     )
