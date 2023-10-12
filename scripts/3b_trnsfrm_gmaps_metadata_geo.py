@@ -23,7 +23,7 @@ folder_output = "3_output"
 #### DATOS
 # importamos el df limpia sin filas duplicadas
 data_gmaps_metadata_sindups = pd.read_parquet(
-    os.path.join(folder_pipeline,folder_gmaps,'gmaps_metadata_limpio.parquet'))
+    os.path.join(folder_pipeline,'gmaps_metadata_limpio.parquet'))
 
 # importamos df con datos de geolocalizacion
 geodata_zcta = geopd.read_file(
