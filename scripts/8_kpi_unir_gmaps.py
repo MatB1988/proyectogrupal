@@ -13,4 +13,4 @@ gmaps_kpi = gmaps_kpi_popularidad
 #gmaps_kpi = pd.merge(left=gmaps_kpi_popularidad,right=gmaps_kpi_satisfaccion, how='left')
 
 gmaps_kpi.to_parquet(
-    os.path.join(folder_output,'gmaps_kpi_popularidad.parquet'))
+    os.path.join(folder_output,'gmaps_kpi.parquet'))
