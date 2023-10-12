@@ -38,7 +38,7 @@ data_gmaps_reviews_norm_filtrado_geo = pd.merge(
     left=data_gmaps_reviews_norm_filtrado,
     right=data_gmaps_geoloc,
     how='left'
-    )
+    ).drop(columns=["state"])
 
 # guardamos el archivo grande en output
 data_gmaps_reviews_norm_filtrado_geo.to_parquet(
