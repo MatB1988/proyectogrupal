@@ -17,12 +17,13 @@ folder_data = "1_data_extract"
 folder_uscensus = "uscensus"
 folder_zcta_geo = "zcta_geo"
 folder_pipeline = "2_pipeline"
+folder_gmaps = "gmaps"
 folder_output = "3_output"
 
 #### DATOS
 # importamos el df limpia sin filas duplicadas
 data_gmaps_metadata_sindups = pd.read_parquet(
-    os.path.join(folder_pipeline,'gmaps_metadata_limpio.parquet'))
+    os.path.join(folder_pipeline,folder_gmaps,'gmaps_metadata_limpio.parquet'))
 
 # importamos df con datos de geolocalizacion
 geodata_zcta = geopd.read_file(
@@ -97,8 +98,8 @@ df_id_gmaps.to_csv(
     os.path.join(folder_output,'df_id_gmaps.csv'))
 
 # Export un df con los id y geolocacion
-data_gmaps_geoloc = data_gmaps_metadata_zcta_usa_census[
-    "gmap_id","state_name","state_code","county_name","zcta5_geoid"]
+data_gmaps_geoloc = data_gmaps_metadata_zcta_usa_census[[
+    "gmap_id","state_name","state_code","county_name","zcta5_geoid"]]
 data_gmaps_geoloc.to_csv(
     os.path.join(folder_output, "data_gmaps_geoloc.csv")
     ,index=False
