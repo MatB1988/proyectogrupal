@@ -8,7 +8,7 @@ folder_output = "3_output"
 
 # importamos el df
 data_gmaps_reviews = pd.read_parquet(
-    os.path.join(folder_pipeline,'data_gmaps_reviews_norm.parquet'))
+    os.path.join(folder_output,'data_gmaps_reviews_norm.parquet'))
 
 # filtramos nuestro df
 columns_interes = [
@@ -71,7 +71,7 @@ gmaps_kpi_popularidad_crecimiento.drop(
 
 #### EXPORTAR DF FINAL
 gmaps_kpi_popularidad_crecimiento.to_parquet(
-    os.path.join(folder_output,'gmaps_kpi_popularidad_crecimiento.parquet'))
+    os.path.join(folder_pipeline,'gmaps_kpi_popularidad_crecimiento.parquet'))
 
 # calculo del KPI segun parte del total
 gmaps_kpi_popularidad_parte = pd.merge(
@@ -87,5 +87,5 @@ gmaps_kpi_popularidad_parte.drop(
 
 #### EXPORTAR DF FINAL
 gmaps_kpi_popularidad_parte.to_parquet(
-    os.path.join(folder_output,'gmaps_kpi_popularidad_parte.parquet'))
+    os.path.join(folder_pipeline,'gmaps_kpi_popularidad_parte.parquet'))
 
