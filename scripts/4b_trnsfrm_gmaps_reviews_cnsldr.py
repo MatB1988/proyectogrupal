@@ -29,7 +29,7 @@ df_id_gmaps = pd.read_csv(
 
 data_gmaps_reviews_norm_filtrado = data_gmaps_reviews_norm.loc[
     data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'].to_list())
-    ]
+    ].drop(columns=["state"])
 
 # geo referenciamos
 
@@ -40,7 +40,7 @@ data_gmaps_reviews_norm_filtrado_zcta = pd.merge(
     left=data_gmaps_reviews_norm_filtrado,
     right=data_gmaps_geoloc,
     how='left'
-    ).drop(columns=["state"])
+    )
 
 # guardamos el archivo grande en output
 data_gmaps_reviews_norm_filtrado_zcta.to_parquet(
