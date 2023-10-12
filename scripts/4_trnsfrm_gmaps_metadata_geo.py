@@ -12,10 +12,10 @@ import pyogrio
 
 # no modificar
 folder_data = "1_data_extract"
-folder_pipeline = "2_pipeline"
-folder_output = "3_output"
 folder_uscensus = "uscensus"
 folder_zcta_geo = "zcta_geo"
+folder_pipeline = "2_pipeline"
+folder_output = "3_output"
 
 #### DATOS
 # importamos el df limpia sin filas duplicadas
