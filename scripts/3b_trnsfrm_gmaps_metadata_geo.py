@@ -51,9 +51,13 @@ data_gmaps_metadata_zcta = geopd.sjoin(
     ,op="within"
     )
 
+data_gmaps_metadata_zcta["geo_looker"] = data_gmaps_metadata_zcta[
+    "latitude"].astype(str)+","+data_gmaps_metadata_zcta["longitude"].astype(str)
+
 #### FILTRAR POR ZONA GEOGRAFICA
 # filtramos las que no pertnencen al territorio EEUU
-data_gmaps_metadata_zcta_usa = data_gmaps_metadata_zcta[data_gmaps_metadata_zcta["zcta5_geoid"].notnull()].copy()
+data_gmaps_metadata_zcta_usa = data_gmaps_metadata_zcta[
+    data_gmaps_metadata_zcta["zcta5_geoid"].notnull()].copy()
 
 # Generamos un dummy para las zonas que estan en la zona continental de EEUU
 # Defino los límites geográficos de los Estados Unidos
@@ -70,8 +74,20 @@ data_gmaps_metadata_zcta_usa['us_continente'] = np.where((
     (data_gmaps_metadata_zcta_usa['longitude'] >= longitud_min) &
     (data_gmaps_metadata_zcta_usa['longitude'] <= longitud_max)),1,0)
 
+data_zcta_varsxarea = pd.read_csv(
+    os.path.join(folder_output, 'data_zcta_varsxarea.csv'),
+    dtype = {'zcta5_geoid': str}).rename(columns={
+        "state_usps":"state_code"}).iloc[:,[0,11,12,13]]
+
+data_gmaps_metadata_zcta_usa_census = pd.merge(
+    data_gmaps_metadata_zcta_usa,
+    data_zcta_varsxarea,
+    on="zcta5_geoid",
+    how="left"
+)
+
 # Genero un df que contenga el los id y los nombres para que se puedan filtrar las rewiews
-df_id_gmaps = data_gmaps_metadata_zcta_usa[['gmap_id', 'name']].copy()
+df_id_gmaps = data_gmaps_metadata_zcta_usa_census[['gmap_id', 'name']].copy()
 
 # Exporto un df con los id y los name para pasar al grupo que esta trabajando con  las rewiews
 df_id_gmaps.drop_duplicates(inplace=True)
@@ -80,6 +96,6 @@ df_id_gmaps.to_csv(
 
 #### EXPORTAR DF FINAL
 # Exporto df_filtrado para probar union por latitud y longitud
-data_gmaps_metadata_zcta_usa.to_parquet(
+data_gmaps_metadata_zcta_usa_census.to_parquet(
     os.path.join(folder_output,'gmaps_metadata_filtrado.parquet'))
 ####
