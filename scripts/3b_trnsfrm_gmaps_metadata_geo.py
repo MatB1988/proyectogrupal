@@ -78,7 +78,7 @@ data_gmaps_metadata_zcta_usa['us_continente'] = np.where((
 data_zcta_varsxarea = pd.read_csv(
     os.path.join(folder_data,folder_uscensus,'data_zcta_varsxarea.csv'),
     dtype = {'zcta5_geoid': str}).rename(columns={
-        "state_usps":"state_code"}).iloc[:,[0,11,12,13]]
+        "state_usps":"state_code"}).iloc[:,[0,11,12]].drop_duplicates()
 
 data_gmaps_metadata_zcta_usa_census = pd.merge(
     data_gmaps_metadata_zcta_usa,
@@ -99,7 +99,7 @@ df_id_gmaps.to_csv(
 
 # Export un df con los id y geolocacion
 data_gmaps_geoloc = data_gmaps_metadata_zcta_usa_census[[
-    "gmap_id","state_name","state_code","county_name","zcta5_geoid"]]
+    "gmap_id","state_name","state_code","zcta5_geoid"]]
 data_gmaps_geoloc.to_csv(
     os.path.join(folder_output, "data_gmaps_geoloc.csv")
     ,index=False
