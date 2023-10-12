@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 import geopandas as geopd
 import pyogrio
+import warnings
+warnings.filterwarnings('ignore', message='.*initial implementation of Parquet.*')
 
 #### ENTORNO
 # Ruta de la carpeta que contiene los archivos JSON

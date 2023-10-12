@@ -28,7 +28,7 @@ df_id_gmaps = pd.read_csv(
     os.path.join(folder_output,'df_id_gmaps.csv'))
 
 data_gmaps_reviews_norm_filtrado = data_gmaps_reviews_norm.loc[
-    data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'])
+    data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'].to_list())
     ]
 
 # guardamos el archivo grande en output
