@@ -69,9 +69,6 @@ gmaps_kpi_popularidad_crecimiento["kpi_popularidad_crecimiento"] = gmaps_kpi_pop
 gmaps_kpi_popularidad_crecimiento.drop(
     columns=["gmap_id_size_pctchange","zcta5_geoid_size_pctchange"], inplace=True)
 
-#### EXPORTAR DF FINAL
-gmaps_kpi_popularidad_crecimiento.to_parquet(
-    os.path.join(folder_pipeline,'gmaps_kpi_popularidad_crecimiento.parquet'))
 
 # calculo del KPI segun parte del total
 gmaps_kpi_popularidad_parte = pd.merge(
@@ -86,6 +83,11 @@ gmaps_kpi_popularidad_parte.drop(
     columns=["gmap_id_rating_size","zcta5_geoid_rating_size"], inplace=True)
 
 #### EXPORTAR DF FINAL
-gmaps_kpi_popularidad_parte.to_parquet(
-    os.path.join(folder_pipeline,'gmaps_kpi_popularidad_parte.parquet'))
+gmaps_kpi_popularidad = pd.merge(
+    left=gmaps_kpi_popularidad_parte,
+    right=gmaps_kpi_popularidad_crecimiento,
+    how='left')
+
+gmaps_kpi_popularidad.to_parquet(
+    os.path.join(folder_pipeline,'gmaps_kpi_popularidad.parquet'))
 
