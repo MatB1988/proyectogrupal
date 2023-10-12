@@ -96,6 +96,14 @@ df_id_gmaps.drop_duplicates(inplace=True)
 df_id_gmaps.to_csv(
     os.path.join(folder_output,'df_id_gmaps.csv'))
 
+# Export un df con los id y geolocacion
+data_gmaps_geoloc = data_gmaps_metadata_zcta_usa_census[
+    "gmap_id","state_name","state_code","county_name","zcta5_geoid"]
+data_gmaps_geoloc.to_csv(
+    os.path.join(folder_output, "data_gmaps_geoloc.csv")
+    ,index=False
+    )
+
 #### EXPORTAR DF FINAL
 # Exporto df_filtrado para probar union por latitud y longitud
 data_gmaps_metadata_zcta_usa_census.to_parquet(

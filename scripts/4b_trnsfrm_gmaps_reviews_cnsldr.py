@@ -31,13 +31,6 @@ data_gmaps_reviews_norm_filtrado = data_gmaps_reviews_norm.loc[
     data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'].to_list())
     ]
 
-data_gmaps_geoloc = data_gmaps_reviews_norm_filtrado[
-    "gmap_id","state_name","state_code","county_name","zcta5_geoid"]
-data_gmaps_geoloc.to_csv(
-    os.path.join(folder_output, "data_gmaps_geoloc.csv")
-    ,index=False
-    )
-
 # guardamos el archivo grande en output
 data_gmaps_reviews_norm_filtrado.to_parquet(
     os.path.join(folder_output, "data_gmaps_reviews_norm.parquet")
