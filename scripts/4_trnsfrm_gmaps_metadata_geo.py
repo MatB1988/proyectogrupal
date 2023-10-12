@@ -39,7 +39,7 @@ data_gmaps_metadata_geo = geopd.GeoDataFrame(
     data_gmaps_metadata_sindups, geometry = geopd.points_from_xy(
         data_gmaps_metadata_sindups.longitude, data_gmaps_metadata_sindups.latitude),
     crs="EPSG:4326"
-    ).to_crs(geodata_zcta.crs)
+    ).to_crs(geodata_zcta.crs) # type: ignore
 
 # unicmos los dfs segun la interseccion de point con el polygono de zcta
 data_gmaps_metadata_zcta = geopd.sjoin(
