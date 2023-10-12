@@ -75,7 +75,7 @@ data_gmaps_metadata_zcta_usa['us_continente'] = np.where((
     (data_gmaps_metadata_zcta_usa['longitude'] <= longitud_max)),1,0)
 
 data_zcta_varsxarea = pd.read_csv(
-    os.path.join(folder_data,folder_uscensus, 'data_zcta_varsxarea.csv'),
+    os.path.join(folder_data,folder_uscensus,'data_zcta_varsxarea.csv'),
     dtype = {'zcta5_geoid': str}).rename(columns={
         "state_usps":"state_code"}).iloc[:,[0,11,12,13]]
 
@@ -84,7 +84,9 @@ data_gmaps_metadata_zcta_usa_census = pd.merge(
     data_zcta_varsxarea,
     on="zcta5_geoid",
     how="left"
-)
+    ).drop(columns=["index_right","zcta5_arealand"]).rename(
+        columns={"geometry":"geo_point"}
+    )
 
 # Genero un df que contenga el los id y los nombres para que se puedan filtrar las rewiews
 df_id_gmaps = data_gmaps_metadata_zcta_usa_census[['gmap_id', 'name']].copy()
