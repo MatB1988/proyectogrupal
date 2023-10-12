@@ -31,16 +31,37 @@ data_gmaps_reviews_norm_filtrado = data_gmaps_reviews_norm.loc[
     data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'].to_list())
     ]
 
+# geo referenciamos
+
 data_gmaps_geoloc = pd.read_csv(
     os.path.join(folder_output,'data_gmaps_geoloc.csv'))
 
-data_gmaps_reviews_norm_filtrado_geo = pd.merge(
+# gmap_id por county
+data_gmaps_geoloc_zcta = data_gmaps_geoloc[[
+    "gmap_id","state_name","state_code","county_name"]].drop_duplicates().copy()
+
+data_gmaps_reviews_norm_filtrado_zcta = pd.merge(
     left=data_gmaps_reviews_norm_filtrado,
-    right=data_gmaps_geoloc,
+    right=data_gmaps_geoloc_zcta,
     how='left'
     ).drop(columns=["state"])
 
 # guardamos el archivo grande en output
-data_gmaps_reviews_norm_filtrado_geo.to_parquet(
-    os.path.join(folder_output, "data_gmaps_reviews_norm.parquet")
+data_gmaps_reviews_norm_filtrado_zcta.to_parquet(
+    os.path.join(folder_output, "data_gmaps_reviews_norm_zcta.parquet")
+    )
+
+# gmap_id por county
+data_gmaps_geoloc_zcta = data_gmaps_geoloc[[
+    "gmap_id","state_name","state_code","zcta5_geoid"]].drop_duplicates().copy()
+
+data_gmaps_reviews_norm_filtrado_zcta = pd.merge(
+    left=data_gmaps_reviews_norm_filtrado,
+    right=data_gmaps_geoloc_zcta,
+    how='left'
+    ).drop(columns=["state"])
+
+# guardamos el archivo grande en output
+data_gmaps_reviews_norm_filtrado_zcta.to_parquet(
+    os.path.join(folder_output, "data_gmaps_reviews_norm_zcta.parquet")
     )
