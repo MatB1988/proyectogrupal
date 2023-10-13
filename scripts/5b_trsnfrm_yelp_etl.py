@@ -84,3 +84,6 @@ for archivo in os.listdir(carpeta_pq_review):
 
 for df in dataframes_parquet:
     df_yelp = df_yelp.merge(df, on='business_id', how='left')
+
+df_yelp.to_parquet(
+    os.path.join(folder_pipeline,'yelp_reviews.parquet'))
