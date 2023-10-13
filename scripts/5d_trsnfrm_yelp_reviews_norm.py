@@ -31,5 +31,25 @@ data_yelp_reviews_norm = data_yelp_reviews.loc[
                 "date":"user_time"
             })
 
-data_yelp_reviews.to_parquet(
-    os.path.join(folder_output,'yelp_reviews.parquet'))
+df_id_yelp = pd.read_csv(
+    os.path.join(folder_output,'df_id_yelp.csv'))
+
+data_yelp_reviews_norm_filtrado = data_yelp_reviews_norm.loc[
+    data_yelp_reviews_norm['business_id'].isin(df_id_yelp['business_id'].to_list())
+    ]#.drop(columns=["state"])
+
+# geo referenciamos
+
+data_yelp_geoloc = pd.read_csv(
+    os.path.join(folder_output,'data_yelp_geoloc.csv'))
+
+data_yelp_reviews_norm_filtrado_zcta = pd.merge(
+    left=data_yelp_reviews_norm_filtrado,
+    right=data_yelp_geoloc,
+    how='left'
+    )
+
+# guardamos el archivo grande en output
+data_yelp_reviews_norm_filtrado_zcta.to_parquet(
+    os.path.join(folder_output, "data_yelp_reviews_norm.parquet")
+    )
