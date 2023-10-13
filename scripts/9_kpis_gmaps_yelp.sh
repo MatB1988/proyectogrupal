@@ -15,5 +15,5 @@ source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 kpi_popul
 
 # kpi_unir_yelp.py
 cd ~ && [ -f kpi_unir_yelp.py ] && sudo rm kpi_unir_yelp.py
-sudo wget -O kpi_unir_yelp.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/8b_kpi_unir_yelp.py
+sudo wget -O kpi_unir_yelp.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/8a_kpi_unir_yelp.py
 source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 kpi_unir_yelp.py && deactivate
