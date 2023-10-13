@@ -28,9 +28,14 @@ source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_2par
 # yelp_cnsldr.py
 cd ~ && [ -f yelp_cnsldr.py ] && sudo rm yelp_cnsldr.py
 cd ~ && sudo wget -O yelp_cnsldr.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5b_trsnfrm_yelp_etl.py
-source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_cnsldr.py  && deactivate
+#source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_cnsldr.py  && deactivate
 
-# yelp_reviews.py
-cd ~ && [ -f yelp_reviews.py ] && sudo rm yelp_reviews.py
-cd ~ && sudo wget -O yelp_reviews.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5c_trsnfrm_yelp_reviews.py
-source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_reviews.py  && deactivate
+# yelp_metadata_geo.py
+cd ~ && [ -f yelp_metadata_geo.py ] && sudo rm yelp_metadata_geo.py
+cd ~ && sudo wget -O yelp_metadata_geo.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5c_trnsfrm_yelp_metadata_geo.py
+source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_metadata_geo.py  && deactivate
+
+# yelp_reviews_norm.py
+cd ~ && [ -f yelp_reviews_norm.py ] && sudo rm yelp_reviews_norm.py
+cd ~ && sudo wget -O yelp_reviews_norm.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5d_trsnfrm_yelp_reviews_norm.py
+source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_reviews_norm.py  && deactivate

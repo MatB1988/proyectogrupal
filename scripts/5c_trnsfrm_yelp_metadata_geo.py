@@ -13,7 +13,7 @@ warnings.filterwarnings('ignore', message='.*initial implementation of Parquet.*
 #ruta_datos = "C:/Users/54280/Documents/GitHub/proyectogrupal/Pruebas/metadata-sitios"
 
 # no modificar
-folder_data = "0_datoscrudos" 
+folder_data = "1_data_extract" 
 folder_uscensus = "uscensus"
 folder_zcta_geo = "zcta_geo"
 folder_pipeline = "2_pipeline"
