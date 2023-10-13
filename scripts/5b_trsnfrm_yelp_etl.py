@@ -29,19 +29,6 @@ biz_df = table.to_pandas()
 # Filtrar las filas sin valores NA / NaN en la columna 'categories'
 df_categories = biz_df.dropna(subset=['categories'])
 
-# Wordcloud
-# Combinar todas las categorías en un solo texto
-#text = ' '.join(df_categories['categories']) # edit manuel: grafico
-
-# Crear un objeto WordCloud
-#wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text) # edit manuel: grafico
-
-# Mostrar la Word Cloud utilizando Matplotlib
-#plt.figure(figsize=(10, 5)) # edit manuel: grafico
-#plt.imshow(wordcloud, interpolation='bilinear') # edit manuel: grafico
-#plt.axis("off") # edit manuel: grafico
-#plt.show() # edit manuel: grafico
-
 # lista de palabras clave relacionadas con comida
 palabras_clave = ["Restaurant", "restaurant", "Food", "food", "Cafe", "cafe", "Diner", "diner", "Bakery", "bakery", "Lunch", "lunch", "Brunch", 'brunch']
 
