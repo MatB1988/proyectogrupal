@@ -29,3 +29,8 @@ source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_2par
 cd ~ && [ -f yelp_cnsldr.py ] && sudo rm yelp_cnsldr.py
 cd ~ && sudo wget -O yelp_cnsldr.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5b_trsnfrm_yelp_etl.py
 source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_cnsldr.py  && deactivate
+
+# yelp_reviews.py
+cd ~ && [ -f yelp_reviews.py ] && sudo rm yelp_reviews.py
+cd ~ && sudo wget -O yelp_reviews.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5c_trsnfrm_yelp_reviews.py
+source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_reviews.py  && deactivate
