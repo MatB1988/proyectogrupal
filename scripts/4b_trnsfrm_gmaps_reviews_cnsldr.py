@@ -6,8 +6,8 @@ import pandas as pd
 # no modificar
 folder_data = "1_data_extract"
 folder_pipeline = "2_pipeline"
-folder_output = "3_output"
 folder_gmaps = "gmaps"
+folder_output = "3_output"
 
 # obtenemos una lista de los archivos en pipeline
 list_files_gmaps_state_norm = glob.glob(
@@ -24,7 +24,25 @@ list_dfs_gmaps_state_norm = [
 data_gmaps_reviews_norm = pd.concat(
     list_dfs_gmaps_state_norm, ignore_index=True)
 
+df_id_gmaps = pd.read_csv(
+    os.path.join(folder_output,'df_id_gmaps.csv'))
+
+data_gmaps_reviews_norm_filtrado = data_gmaps_reviews_norm.loc[
+    data_gmaps_reviews_norm['gmap_id'].isin(df_id_gmaps['gmap_id'].to_list())
+    ].drop(columns=["state"])
+
+# geo referenciamos
+
+data_gmaps_geoloc = pd.read_csv(
+    os.path.join(folder_output,'data_gmaps_geoloc.csv'))
+
+data_gmaps_reviews_norm_filtrado_zcta = pd.merge(
+    left=data_gmaps_reviews_norm_filtrado,
+    right=data_gmaps_geoloc,
+    how='left'
+    )
+
 # guardamos el archivo grande en output
-data_gmaps_reviews_norm.to_parquet(
+data_gmaps_reviews_norm_filtrado_zcta.to_parquet(
     os.path.join(folder_output, "data_gmaps_reviews_norm.parquet")
     )
