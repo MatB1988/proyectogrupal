@@ -8,3 +8,6 @@ Se exploró la posibilidad de utilizar Looker directamente con el almacenamiento
 
 La conexión se realizó a través de DirectQuery, lo que tiene la limitación de no permitir transformaciones de datos, como la eliminación de duplicados. Por lo tanto, estas tareas deberán llevarse a cabo en Python según las necesidades de los analistas de datos.
 
+## KPIs
+
+Vamos a desarrollas los KPIs a utilizar en el tablero para medir los mismos:
