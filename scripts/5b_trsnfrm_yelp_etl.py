@@ -82,8 +82,10 @@ for archivo in os.listdir(carpeta_pq_review):
 # Combinar todos los DataFrames individuales en uno solo
 # review_df = pd.concat(dataframes_parquet, ignore_index=True)
 
-for df in dataframes_parquet:
-    df_yelp = df_yelp.merge(df, on='business_id', how='left')
+# MemoryError: Unable to allocate 73.2 GiB for an array with shape (9822733675,) and data type int64
+#for df in dataframes_parquet:
+#    df_yelp = df_yelp.merge(df, on='business_id', how='left')
 
-df_yelp.to_parquet(
+yelp_reviews = pd.DataFrame(dataframes_parquet)
+yelp_reviews.to_parquet(
     os.path.join(folder_pipeline,'yelp_reviews.parquet'))
