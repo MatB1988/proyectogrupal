@@ -27,7 +27,7 @@ data_yelp_business = pd.read_pickle(
     ).convert_dtypes().iloc[:, :14].drop(
         columns=["city","state","postal_code",
                  "stars","review_count","is_open",
-                 "attributes","hours"]
+                 "hours"]
     )#.dropna(subset=['categories'])
 
 # filatramos
