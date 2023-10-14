@@ -39,3 +39,13 @@ source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_meta
 cd ~ && [ -f yelp_reviews_norm.py ] && sudo rm yelp_reviews_norm.py
 cd ~ && sudo wget -O yelp_reviews_norm.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5d_trsnfrm_yelp_reviews_norm.py
 source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 yelp_reviews_norm.py  && deactivate
+
+# business_metadata.py
+cd ~ && [ -f business_metadata.py ] && sudo rm business_metadata.py
+cd ~ && sudo wget -O business_metadata.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5e_cnsldr_business_metadata.py
+source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 business_metadata.py  && deactivate
+
+# business_reviews.py
+cd ~ && [ -f business_reviews.py ] && sudo rm business_reviews.py
+cd ~ && sudo wget -O business_reviews.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5f_cnsldr_business_reviews.py
+source /home/henry_grupo10_v1/env_extract/bin/activate && sudo python3 business_reviews.py  && deactivate
