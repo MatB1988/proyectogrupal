@@ -124,8 +124,8 @@ data_gmaps_metadata_nonlist_unique = data_gmaps_metadata_nonlist.loc[~data_gmaps
 # unimos el df sin las filas con datos unicos
 # y el df con las filas con mayor informacion
 data_gmaps_metadata_nonlist_sindups = pd.concat(
-    [data_gmaps_metadata_nonlist_unique,
-     data_gmaps_metadata_nonlist_dupslen]).drop_duplicates()
+    [data_gmaps_metadata_nonlist_unique,data_gmaps_metadata_nonlist_dupslen]
+    ).drop_duplicates()
 
 ## SEGUNDO: column_list_hours
 data_gmaps_metadata_hours = data_gmaps_metadata[
