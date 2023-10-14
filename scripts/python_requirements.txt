@@ -5,3 +5,4 @@ pandas==2.0.3
 geopandas==0.9.0
 pyogrio
 rtree==1.0.1
+nltk
