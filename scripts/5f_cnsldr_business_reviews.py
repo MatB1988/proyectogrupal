@@ -22,4 +22,4 @@ data_business_reviews = pd.concat([data_gmaps_reviews, data_yelp_reviews]).renam
     columns={"zcta5_geoid":"codigo_postal_zcta"})
 
 data_business_reviews.to_parquet(
-    os.path.join(folder_output,'business_metadata_filtrado.parquet'))
+    os.path.join(folder_output,'business_reviews_norm.parquet'))
