@@ -9,7 +9,8 @@ folder_output = "3_output"
 
 data_gmaps_reviews = pd.read_parquet(
     os.path.join(folder_pipeline,'data_gmaps_reviews_norm.parquet')).rename(
-    columns={"gmap_id":"business_id"}).drop(columns=["user_name"])
+    columns={"gmap_id":"business_id"}).drop(
+        columns=["user_name"])
     
 data_yelp_reviews = pd.read_parquet(
     os.path.join(folder_pipeline,'data_yelp_reviews_norm.parquet')).drop(
