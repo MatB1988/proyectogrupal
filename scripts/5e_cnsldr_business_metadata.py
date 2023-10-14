@@ -10,7 +10,7 @@ folder_output = "3_output"
 # importamos el df
 data_gmaps_metadata = pd.read_parquet(
     os.path.join(folder_pipeline,'gmaps_metadata_filtrado.parquet')).drop(
-        columns=["geo_point","geo_looker"]
+        columns=["geo_point","geo_looker","hours"]
     ).rename(
     columns={
         "gmap_id":"business_id",
@@ -21,7 +21,7 @@ data_gmaps_metadata = pd.read_parquet(
     
 data_yelp_metadata = pd.read_parquet(
     os.path.join(folder_pipeline,'yelp_metadata_filtrado.parquet')).drop(
-        columns=["geo_point","geo_looker"]
+        columns=["geo_point","geo_looker","hours"]
     ).rename(columns={
         "stars":"rating_historico",
         "review_count":"review_count_historico"})
