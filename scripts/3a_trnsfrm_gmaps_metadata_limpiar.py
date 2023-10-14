@@ -114,10 +114,8 @@ data_gmaps_metadata_nonlist["category_length"] = data_gmaps_metadata_nonlist["ca
 
 # Nos quedamos con los valores en 'category_length'que contienen mayor info; 
 # keep='last' corresponde a la fila donde 'category_length' es mas alto
-data_gmaps_metadata_nonlist_dupslen = data_gmaps_metadata_nonlist[
-    data_gmaps_metadata_nonlist.duplicated(
-        subset=['gmap_id'],keep='last')
-    ].sort_values(by=['gmap_id','category_length']).drop(columns=['category_length'])
+data_gmaps_metadata_nonlist_dupslen = data_gmaps_metadata_nonlist.loc[data_gmaps_metadata_nonlist.duplicated(
+    subset=['gmap_id'],keep='last')].sort_values(by=['gmap_id','category_length']).drop(columns=['category_length'])
 
 # df con datos sin las filas con datos duplicados
 data_gmaps_metadata_nonlist_unique = data_gmaps_metadata_nonlist.loc[~data_gmaps_metadata_nonlist.duplicated(
