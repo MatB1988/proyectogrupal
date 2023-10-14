@@ -167,10 +167,8 @@ data_gmaps_metadata_misc_2join = pd.merge(
 
 ## CUARTO: Unimos los dfs
 # hacemos un left join donde nonlist es nuestro df de referencia.
-data_gmaps_metadata_sindups = pd.merge(pd.merge(
+data_gmaps_metadata_sindups = pd.merge(
     left=data_gmaps_metadata_nonlist_sindups,
-    right=data_gmaps_metadata_hours_2join,
-    how='left'),
     right=data_gmaps_metadata_misc_2join,
     how='left')
 
