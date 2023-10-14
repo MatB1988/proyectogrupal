@@ -125,5 +125,5 @@ data_yelp_geoloc.to_csv(
 #### EXPORTAR DF FINAL
 # Exporto df_filtrado para probar union por latitud y longitud
 data_yelp_business_filtrado_zcta_usa_census.to_parquet(
-    os.path.join(folder_output,'yelp_metadata_filtrado.parquet'))
+    os.path.join(folder_pipeline,'yelp_metadata_filtrado.parquet'))
 ####

@@ -108,5 +108,5 @@ data_gmaps_geoloc.to_csv(
 #### EXPORTAR DF FINAL
 # Exporto df_filtrado para probar union por latitud y longitud
 data_gmaps_metadata_zcta_usa_census.to_parquet(
-    os.path.join(folder_output,'gmaps_metadata_filtrado.parquet'))
+    os.path.join(folder_pipeline,'gmaps_metadata_filtrado.parquet'))
 ####

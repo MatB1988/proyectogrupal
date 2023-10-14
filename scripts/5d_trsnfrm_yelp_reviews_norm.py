@@ -51,5 +51,5 @@ data_yelp_reviews_norm_filtrado_zcta = pd.merge(
 
 # guardamos el archivo grande en output
 data_yelp_reviews_norm_filtrado_zcta.to_parquet(
-    os.path.join(folder_output, "data_yelp_reviews_norm.parquet")
+    os.path.join(folder_pipeline, "data_yelp_reviews_norm.parquet")
     )
