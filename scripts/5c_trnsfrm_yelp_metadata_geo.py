@@ -25,9 +25,7 @@ folder_output = "3_output"
 data_yelp_business = pd.read_pickle(
     os.path.join(folder_data,folder_yelp, 'business.pkl')
     ).convert_dtypes().iloc[:, :14].drop(
-        columns=["city","state","postal_code",
-                 "stars","review_count","is_open",
-                 "hours"]
+        columns=["city","state","postal_code","is_open"]
     )#.dropna(subset=['categories'])
 
 # filatramos
