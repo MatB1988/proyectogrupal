@@ -78,5 +78,5 @@ data_business_reviews_kpi_satisfaccion['kpi_satisfaccion_suma'] = data_business_
 
 # Guardar el DataFrame final como un archivo parquet
 data_business_reviews_kpi_satisfaccion.to_parquet(
-    os.path.join(folder_output,'business_kpi_satisfaccion.parquet'),
+    os.path.join(folder_pipeline,'business_kpi_satisfaccion.parquet'),
     index=False)
