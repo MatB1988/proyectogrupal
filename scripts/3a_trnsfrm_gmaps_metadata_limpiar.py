@@ -178,4 +178,7 @@ data_gmaps_metadata_sindups = pd.merge(pd.merge(
 # Exporto df_filtrado para probar union por latitud y longitud con la base de yeld
 data_gmaps_metadata_sindups.to_parquet(
     os.path.join(folder_pipeline,'gmaps_metadata_limpio.parquet'))
+
+data_gmaps_metadata_misc_sindups.to_parquet(
+    os.path.join(folder_pipeline,'data_gmaps_metadata_misc_sindups.parquet'))
 ####
