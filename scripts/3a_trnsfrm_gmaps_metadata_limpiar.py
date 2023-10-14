@@ -177,6 +177,9 @@ data_gmaps_metadata_sindups = pd.merge(
 data_gmaps_metadata_sindups.to_parquet(
     os.path.join(folder_pipeline,'gmaps_metadata_limpio.parquet'))
 
+data_gmaps_metadata_nonlist_sindups.to_parquet(
+    os.path.join(folder_pipeline,'data_gmaps_metadata_nonlist_sindups.parquet'))
+
 data_gmaps_metadata_misc_sindups.to_parquet(
     os.path.join(folder_pipeline,'data_gmaps_metadata_misc_sindups.parquet'))
 ####
