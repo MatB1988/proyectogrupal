@@ -23,3 +23,28 @@ data_business_reviews = pd.concat([data_gmaps_reviews, data_yelp_reviews]).renam
 
 data_business_reviews.to_parquet(
     os.path.join(folder_output,'business_reviews_norm.parquet'))
+
+#### creamos df con varibales numericas
+data_business_reviews_reviews_size = data_business_reviews.groupby(
+    by=[
+        "state_name","state_code","codigo_postal_zcta",
+        "business_id","user_time_year","user_time_month"
+        ],
+    dropna=False
+    )["user_text"].size().reset_index().rename(columns={"user_text":"reviews_size"})
+
+data_business_reviews_rating_mean = data_business_reviews.groupby(
+    by=[
+        "state_name","state_code","codigo_postal_zcta",
+        "business_id","user_time_year","user_time_month"
+        ],
+    dropna=False
+    )["rating"].mean().reset_index().rename(columns={"rating":"rating_mean"})
+
+data_business_reviews_numeric = pd.merge(
+    left=data_business_reviews_reviews_size,
+    right=data_business_reviews_rating_mean,
+    how='left')
+
+data_business_reviews_numeric.to_parquet(
+    os.path.join(folder_output,'business_reviews_norm_numeric.parquet'))
