@@ -106,26 +106,21 @@ column_list_hours = [
 
 ## PRIMERO: column_nonlist
 # nos quedamos con las filas unicas de las columnas sin listas
-data_gmaps_metadata_nonlist = data_gmaps_metadata[
-    column_nonlist].drop_duplicates().sort_values(by=['gmap_id']).copy()
+data_gmaps_metadata_nonlist = data_gmaps_metadata[column_nonlist].drop_duplicates().sort_values(by=['gmap_id']).copy()
 
 # Contamos el numero de caracteres en 'category'
 data_gmaps_metadata_nonlist["category_length"] = data_gmaps_metadata_nonlist["category"].str.len()
 
 # Nos quedamos con los valores en 'category_length'que contienen mayor info; 
 # keep='last' corresponde a la fila donde 'category_length' es mas alto
-data_gmaps_metadata_nonlist_dupslen = data_gmaps_metadata_nonlist.loc[data_gmaps_metadata_nonlist.duplicated(
-    subset=['gmap_id'],keep='last')].sort_values(by=['gmap_id','category_length']).drop(columns=['category_length'])
+data_gmaps_metadata_nonlist_dupslen = data_gmaps_metadata_nonlist.loc[data_gmaps_metadata_nonlist.sort_values(by=['gmap_id','category_length']).duplicated(subset=['gmap_id'],keep='last')].drop(columns=['category_length']).copy()
 
 # df con datos sin las filas con datos duplicados
-data_gmaps_metadata_nonlist_unique = data_gmaps_metadata_nonlist.loc[~data_gmaps_metadata_nonlist.duplicated(
-    subset=['gmap_id'],keep=False)].sort_values(by=['gmap_id']).drop(columns=['category_length'])
+data_gmaps_metadata_nonlist_unique = data_gmaps_metadata_nonlist.loc[~data_gmaps_metadata_nonlist.sort_values(by=['gmap_id']).duplicated(subset=['gmap_id'],keep=False)].drop(columns=['category_length']).copy()
 
 # unimos el df sin las filas con datos unicos
 # y el df con las filas con mayor informacion
-data_gmaps_metadata_nonlist_sindups = pd.concat(
-    [data_gmaps_metadata_nonlist_unique,data_gmaps_metadata_nonlist_dupslen]
-    ).drop_duplicates()
+data_gmaps_metadata_nonlist_sindups = pd.concat([data_gmaps_metadata_nonlist_unique,data_gmaps_metadata_nonlist_dupslen]).drop_duplicates()
 
 ## SEGUNDO: column_list_hours
 data_gmaps_metadata_hours = data_gmaps_metadata[
