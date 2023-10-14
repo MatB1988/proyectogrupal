@@ -111,6 +111,7 @@ data_gmaps_metadata_nonlist = data_gmaps_metadata[
 
 # Contamos el numero de caracteres en 'category'
 data_gmaps_metadata_nonlist["category_length"] = data_gmaps_metadata_nonlist["category"].str.len()
+
 # Nos quedamos con los valores en 'category_length'que contienen mayor info; 
 # keep='last' corresponde a la fila donde 'category_length' es mas alto
 data_gmaps_metadata_nonlist_dupslen = data_gmaps_metadata_nonlist[
@@ -124,7 +125,7 @@ data_gmaps_metadata_nonlist_unique = data_gmaps_metadata_nonlist[
         subset=['gmap_id'],keep=False)
     ].sort_values(by=['gmap_id']).drop(columns=['category_length'])
 
-# unimos el df sin las filas con datos duplicados
+# unimos el df sin las filas con datos unicos
 # y el df con las filas con mayor informacion
 data_gmaps_metadata_nonlist_sindups = pd.concat(
     [data_gmaps_metadata_nonlist_unique,
@@ -161,7 +162,7 @@ data_gmaps_metadata_misc_sindups = data_gmaps_metadata_misc.assign(
         ).drop_duplicates().sort_values(by=['gmap_id'])
 # regresamos a su formato inicial la columna misc
 data_gmaps_metadata_misc_2join = pd.merge(
-    left=data_gmaps_metadata_misc_sindups,
+    left=data_gmaps_metadata_misc_sindups.reset_index().drop_duplicates(subset='index').set_index('index'),
     right=data_gmaps_metadata_misc.reset_index().drop_duplicates(subset='index').set_index('index'),
     how='left').drop(columns=['misc_tuple'])
 
