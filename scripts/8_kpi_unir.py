@@ -16,7 +16,7 @@ business_kpi_satisfaccion = pd.read_parquet(
 business_kpi_sindefinir = business_kpi_popularidad[
     ["state_name","state_code","codigo_postal_zcta","business_id"]].copy().drop_duplicates()
 n_size = len(business_kpi_sindefinir)
-business_kpi_sindefinir["kpi_3_cumplimiento"] = np.random.normal(loc=60, scale=15.0, size=(n_size))
+business_kpi_sindefinir["kpi_3i_sindefinir"] = np.random.normal(loc=60, scale=15.0, size=(n_size))
 
 business_kpi = pd.merge(
     left=pd.merge(
