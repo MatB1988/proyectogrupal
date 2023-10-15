@@ -33,7 +33,7 @@ df_gmaps = pd.concat(data_frames, ignore_index=True)
 
 #### FILTRAR POR CATEGORIA
 # Saco la lista que compone category y la dejo como texto para explorarla
-df_exploded = df_gmaps.explode('category')
+df_exploded = df_gmaps.explode('category').copy()
 
 # Lista de palabras clave
 palabras_clave = ["restaurant", "food", "cafe", "diner", "bakery", "lunch", "brunch"]
@@ -42,10 +42,10 @@ palabras_clave = ["restaurant", "food", "cafe", "diner", "bakery", "lunch", "bru
 patron_busqueda = '|'.join(palabras_clave)
 
 # Eliminar registros con valores faltantes en la columna "category"
-df_exploded = df_exploded.dropna(subset=['category'])
+df_exploded.dropna(subset=['category'],inplace=True)
 
 # Convertir la columna "category" a minúsculas y eliminar espacios en blanco
-df_exploded['category'] = df_exploded['category'].str.lower().str.strip()
+df_exploded['category'] = df_exploded['category'].str.lower().str.strip().copy()
 
 # Filtrar los registros que contienen cualquier parte de las palabras clave en la columna "category"
 data_gmaps_metadata = df_exploded[df_exploded['category'].str.contains(patron_busqueda, case=False)].copy()
@@ -106,56 +106,77 @@ column_list_hours = [
 
 ## PRIMERO: column_nonlist
 # nos quedamos con las filas unicas de las columnas sin listas
-data_gmaps_metadata_nonlist = data_gmaps_metadata[column_nonlist].drop_duplicates().sort_values(by=['gmap_id']).copy()
+data_gmaps_metadata_nonlist = data_gmaps_metadata[column_nonlist].copy()
+data_gmaps_metadata_nonlist.sort_values(by=['gmap_id'], inplace=True)
+data_gmaps_metadata_nonlist.drop_duplicates(inplace=True)
 
 # Contamos el numero de caracteres en 'category'
 data_gmaps_metadata_nonlist["category_length"] = data_gmaps_metadata_nonlist["category"].str.len()
 
 # Nos quedamos con los valores en 'category_length'que contienen mayor info; 
 # keep='last' corresponde a la fila donde 'category_length' es mas alto
-data_gmaps_metadata_nonlist_dupslen = data_gmaps_metadata_nonlist.loc[data_gmaps_metadata_nonlist.sort_values(by=['gmap_id','category_length']).duplicated(subset=['gmap_id'],keep='last')].drop(columns=['category_length']).copy()
+data_gmaps_metadata_nonlist_dupslen = data_gmaps_metadata_nonlist.loc[data_gmaps_metadata_nonlist.sort_values(
+    by=['gmap_id','category_length']).duplicated(subset=['gmap_id'],keep='last')].copy()
+data_gmaps_metadata_nonlist_dupslen.drop(columns=['category_length'], inplace=True)
 
 # df con datos sin las filas con datos duplicados
-data_gmaps_metadata_nonlist_unique = data_gmaps_metadata_nonlist.loc[~data_gmaps_metadata_nonlist.sort_values(by=['gmap_id']).duplicated(subset=['gmap_id'],keep=False)].drop(columns=['category_length']).copy()
+data_gmaps_metadata_nonlist_unique = data_gmaps_metadata_nonlist.loc[~data_gmaps_metadata_nonlist.sort_values(
+    by=['gmap_id']).duplicated(subset=['gmap_id'],keep=False)].copy()
+data_gmaps_metadata_nonlist_unique.drop(columns=['category_length'], inplace=True)
 
 # unimos el df sin las filas con datos unicos
 # y el df con las filas con mayor informacion
-data_gmaps_metadata_nonlist_sindups = pd.concat([data_gmaps_metadata_nonlist_unique,data_gmaps_metadata_nonlist_dupslen]).drop_duplicates()
+data_gmaps_metadata_nonlist_sindups = pd.concat(
+    [data_gmaps_metadata_nonlist_unique,data_gmaps_metadata_nonlist_dupslen]
+    )
+data_gmaps_metadata_nonlist_sindups.drop_duplicates(inplace=True)
 
 ## SEGUNDO: column_list_hours
-data_gmaps_metadata_hours = data_gmaps_metadata[
-    column_list_hours].dropna(subset=['hours']).copy()
+data_gmaps_metadata_hours = data_gmaps_metadata[column_list_hours].copy()
+data_gmaps_metadata_hours.dropna(subset=['hours'],inplace=True)
 data_gmaps_metadata_hours['hours_list'] = [list(map(tuple, lst)) for lst in data_gmaps_metadata_hours.hours]
 data_gmaps_metadata_hours_list = data_gmaps_metadata_hours.drop(columns=['hours']).copy()
 
 # para que drop_duplicates acepte las columnas anidadas, transformamos las columas en tuple
 data_gmaps_metadata_hours_sindups = data_gmaps_metadata_hours_list.assign(
-        hours_list = data_gmaps_metadata_hours_list['hours_list'].map(tuple)
-        ).drop_duplicates()
+        hours_list = data_gmaps_metadata_hours_list['hours_list'].map(tuple)).copy()
+data_gmaps_metadata_hours_sindups.sort_values(by=['gmap_id'],inplace=True)
+data_gmaps_metadata_hours_sindups.drop_duplicates(inplace=True)
+
 # regresamos a su formato inicial la columna hours
+# preparamos el join
+data_gmaps_metadata_hours_2merge = data_gmaps_metadata_hours.drop(columns=['hours_list']).copy()
+data_gmaps_metadata_hours_2merge.reset_index(inplace=True)
+data_gmaps_metadata_hours_2merge.drop_duplicates(subset='index',inplace=True)
+data_gmaps_metadata_hours_2merge.set_index('index',inplace=True)
+
 data_gmaps_metadata_hours_2join = pd.merge(
     left=data_gmaps_metadata_hours_sindups,
-    right=data_gmaps_metadata_hours.drop(
-        columns=['hours_list']).reset_index().drop_duplicates(subset='index').set_index('index'),
-    how='left').drop(columns=['hours_list'])
+    right=data_gmaps_metadata_hours_2merge,
+    how='left')
+data_gmaps_metadata_hours_2join.drop(columns=['hours_list'],inplace=True)
 
 ## TERCERO: column_list_misc
-data_gmaps_metadata_misc = data_gmaps_metadata[
-    column_list_misc].dropna(subset=['MISC']).copy()
+data_gmaps_metadata_misc = data_gmaps_metadata[column_list_misc].copy()
+data_gmaps_metadata_misc.dropna(subset=['MISC'],inplace=True)
 
 # para que drop_duplicates acepte las columnas anidadas, transformamos las columas en tuple
-data_gmaps_metadata_misc = data_gmaps_metadata[
-    column_list_misc].dropna(subset=['MISC']).copy()
 data_gmaps_metadata_misc_sindups = data_gmaps_metadata_misc.assign(
-    MISC = data_gmaps_metadata_misc['MISC'].map(tuple)
-    ).rename(
-        columns={'MISC':'misc_tuple'}
-        ).drop_duplicates().sort_values(by=['gmap_id'])
+    MISC = data_gmaps_metadata_misc['MISC'].map(tuple)).copy()
+data_gmaps_metadata_misc_sindups.rename(columns={'MISC':'misc_tuple'},inplace=True)
+data_gmaps_metadata_misc_sindups.sort_values(by=['gmap_id'],inplace=True)
+data_gmaps_metadata_misc_sindups.drop_duplicates(inplace=True)
 # regresamos a su formato inicial la columna misc
+data_gmaps_metadata_misc_2merge = data_gmaps_metadata_misc.drop(columns=['misc_tuple']).copy()
+data_gmaps_metadata_misc_2merge.reset_index(inplace=True)
+data_gmaps_metadata_misc_2merge.drop_duplicates(subset='index',inplace=True)
+data_gmaps_metadata_misc_2merge.set_index('index',inplace=True)
+
 data_gmaps_metadata_misc_2join = pd.merge(
-    left=data_gmaps_metadata_misc_sindups.reset_index().drop_duplicates(subset='index').set_index('index'),
-    right=data_gmaps_metadata_misc.reset_index().drop_duplicates(subset='index').set_index('index'),
-    how='left').drop(columns=['misc_tuple'])
+    left=data_gmaps_metadata_misc_sindups,
+    right=data_gmaps_metadata_misc,
+    how='left')
+data_gmaps_metadata_misc_2join.drop(columns=['misc_tuple'],inplace=True)
 
 ## CUARTO: Unimos los dfs
 # hacemos un left join donde nonlist es nuestro df de referencia.
