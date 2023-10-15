@@ -107,12 +107,11 @@ column_list_hours = [
 ## PRIMERO: column_nonlist
 # nos quedamos con las filas unicas de las columnas sin listas
 data_gmaps_metadata_nonlist = data_gmaps_metadata[column_nonlist].copy()
-data_gmaps_metadata_nonlist.sort_values(by=['gmap_id'], inplace=True)
 data_gmaps_metadata_nonlist.drop_duplicates(inplace=True)
 
 # Contamos el numero de caracteres en 'category'
 data_gmaps_metadata_nonlist["category_length"] = data_gmaps_metadata_nonlist["category"].str.len()
-data_gmaps_metadata_nonlist.sort_values(by=['gmap_id','category_length'],inplace=True)
+data_gmaps_metadata_nonlist.sort_values(by=['gmap_id','category_length'],ascending=False,inplace=True)
 
 # Nos quedamos con los valores en 'category_length'que contienen mayor info; 
 # keep='last' corresponde a la fila donde 'category_length' es mas alto
