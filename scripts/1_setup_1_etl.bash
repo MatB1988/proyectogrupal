@@ -42,7 +42,7 @@ sudo apt install -y libgdal-dev # tidycensus requirements
 cd /home/henry_grupo10_v1/0_scripts
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
 sudo Rscript r_requirements.R
-cd ~
+cd ~export PATH=/home/henry_grupo10_v1/anaconda3/bin:$PATH
 sudo apt update -qq -y && sudo apt upgrade -qq -y
 pip list --local
 sudo R --version
@@ -53,4 +53,11 @@ sudo sudo wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_6
 #-b flag Batch mode with no PATH modifications to ~/.bashrc.
 # Assumes that you agree to the license agreement.
 # Does not edit the .bashrc or .bash_profile files.
-cd ~ && bash /home/henry_grupo10_v1/downloads/Anaconda3-2023.09-0-Linux-x86_64.sh -b 
+cd ~ && bash /home/henry_grupo10_v1/downloads/Anaconda3-2023.09-0-Linux-x86_64.sh -b
+export PATH=/home/henry_grupo10_v1/anaconda3/bin:$PATH && conda init bash && bash -l
+conda create --name pandas_geo && conda activate pandas_geo
+conda config --append channels conda-forge && conda config channel_priority=flexible
+conda install --yes numpy pandas geopandas pyarrow fastparquet && conda deactivate
+conda create --name pandas_scikit && conda activate pandas_scikit
+conda config --append channels conda-forge && conda config channel_priority=flexible
+conda install --yes numpy pandas pyarrow fastparquet scikit-learn nltk && conda deactivate
