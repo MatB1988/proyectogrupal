@@ -10,7 +10,7 @@ folder_output = "3_output"
 # importamos el df
 data_gmaps_metadata = pd.read_parquet(
     os.path.join(folder_pipeline,'gmaps_metadata_filtrado.parquet')).drop(
-        columns=["geo_point","geo_looker","hours"]
+        columns=["geo_point","geo_looker"]
     ).rename(
     columns={
         "gmap_id":"business_id",
