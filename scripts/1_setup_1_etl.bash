@@ -54,7 +54,8 @@ sudo sudo wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_6
 # Assumes that you agree to the license agreement.
 # Does not edit the .bashrc or .bash_profile files.
 cd ~ && bash /home/henry_grupo10_v1/downloads/Anaconda3-2023.09-0-Linux-x86_64.sh -b
-export PATH=/home/henry_grupo10_v1/anaconda3/bin:$PATH && conda init bash && bash -l
+#export PATH=/home/henry_grupo10_v1/anaconda3/bin:$PATH
+conda init bash && bash -l && conda config --set auto_activate_base false
 conda create --name pandas_geo && conda activate pandas_geo
 conda config --append channels conda-forge && conda config channel_priority=flexible
 conda install --yes numpy pandas geopandas pyarrow fastparquet && conda deactivate
