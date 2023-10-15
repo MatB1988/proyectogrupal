@@ -168,14 +168,14 @@ data_gmaps_metadata_misc_sindups.rename(columns={'MISC':'misc_tuple'},inplace=Tr
 data_gmaps_metadata_misc_sindups.sort_values(by=['gmap_id'],inplace=True)
 data_gmaps_metadata_misc_sindups.drop_duplicates(inplace=True)
 # regresamos a su formato inicial la columna misc
-data_gmaps_metadata_misc_2merge = data_gmaps_metadata_misc.drop(columns=['misc_tuple']).copy()
+data_gmaps_metadata_misc_2merge = data_gmaps_metadata_misc.copy()
 data_gmaps_metadata_misc_2merge.reset_index(inplace=True)
 data_gmaps_metadata_misc_2merge.drop_duplicates(subset='index',inplace=True)
 data_gmaps_metadata_misc_2merge.set_index('index',inplace=True)
 
 data_gmaps_metadata_misc_2join = pd.merge(
     left=data_gmaps_metadata_misc_sindups,
-    right=data_gmaps_metadata_misc,
+    right=data_gmaps_metadata_misc_2merge,
     how='left')
 data_gmaps_metadata_misc_2join.drop(columns=['misc_tuple'],inplace=True)
 
