@@ -53,12 +53,14 @@ cd downloads && sudo sudo wget https://repo.anaconda.com/archive/Anaconda3-2023.
 # Assumes that you agree to the license agreement.
 # Does not edit the .bashrc or .bash_profile files.
 cd ~ && bash /home/henry_grupo10_v1/downloads/Anaconda3-2023.09-0-Linux-x86_64.sh -b
-#export PATH=/bin:/usr/bin:/home/debian/anaconda3/bin:$PATH && bash -l
+sudo echo 'PATH=/bin:/usr/bin:/home/debian/anaconda3/bin:$PATH' >>~/.bash_profile
 sudo ~/anaconda3/bin/conda init && bash -l
 sudo ~/anaconda3/bin/conda config --set auto_activate_base false
 sudo ~/anaconda3/bin/conda create --yes --name pandas_geo
-sudo ~/anaconda3/bin/activate pandas_geo && sudo ~/anaconda3/bin/conda config --append channels conda-forge #&& sudo ~/anaconda3/bin/conda config channel_priority=flexible
-sudo ~/anaconda3/bin/conda install --yes numpy pandas geopandas pyarrow fastparquet && sudo ~/anaconda3/bin/deactivate
+sudo ~/anaconda3/bin/activate pandas_geo
+conda config --env --append channels conda-forge
+sudo ~/anaconda3/bin/conda install --name pandas_geo --yes numpy pandas geopandas pyarrow fastparquet pyogrio
 sudo ~/anaconda3/bin/conda create --yes --name pandas_scikit
-sudo ~/anaconda3/bin/activate pandas_scikit && sudo ~/anaconda3/bin/conda config --append channels conda-forge #&& conda config channel_priority=flexible
-sudo ~/anaconda3/bin/conda install --yes numpy pandas pyarrow fastparquet scikit-learn nltk && sudo ~/anaconda3/bin/deactivate
+sudo ~/anaconda3/bin/activate pandas_scikit
+conda config --env --append channels conda-forge
+sudo ~/anaconda3/bin/conda install --name pandas_scikit --yes numpy pandas pyarrow fastparquet scikit-learn nltk
