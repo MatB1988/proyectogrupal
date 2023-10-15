@@ -22,14 +22,15 @@ data_yelp_reviews['user_time_day'] = pd.to_datetime(data_yelp_reviews['date']).d
 data_yelp_reviews['user_time_hms'] = pd.to_datetime(data_yelp_reviews['date']).dt.time
 
 data_yelp_reviews_norm = data_yelp_reviews.loc[
-    (data_yelp_reviews['user_time_year'] >= 2020) &
-    (data_yelp_reviews['user_time_month'] >= 7)].copy().sort_values(
-        ["user_time_year","user_time_month"]).drop(
-            columns=["useful","funny","cool"]).rename(columns={
-                "stars":"rating",
-                "text":"user_text",
-                "date":"user_time"
-            })
+    ((data_yelp_reviews['user_time_year'] == 2020) &
+    (data_yelp_reviews['user_time_month'] >= 7)) |
+    ((data_yelp_reviews['user_time_year'] >= 2021))
+    ].copy()
+data_yelp_reviews_norm.sort_values(["user_time_year","user_time_month"], inplace=True)
+data_yelp_reviews_norm.drop(columns=["useful","funny","cool"], inplace=True)
+data_yelp_reviews_norm.rename(
+    columns={"stars":"rating","text":"user_text","date":"user_time"},
+    inplace=True)
 
 df_id_yelp = pd.read_csv(
     os.path.join(folder_output,'df_id_yelp.csv'))
