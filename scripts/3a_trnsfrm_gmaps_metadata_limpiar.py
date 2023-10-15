@@ -116,7 +116,7 @@ data_gmaps_metadata_nonlist.sort_values(by=['gmap_id','category_length'],ascendi
 # Nos quedamos con los valores en 'category_length'que contienen mayor info; 
 # keep='last' corresponde a la fila donde 'category_length' es mas alto
 data_gmaps_metadata_nonlist_sindups = data_gmaps_metadata_nonlist[~data_gmaps_metadata_nonlist.duplicated(
-    subset=['business_id'],keep='last')].copy() # last = exclude
+    subset=['gmap_id'],keep='last')].copy() # last = exclude
 data_gmaps_metadata_nonlist_sindups.drop(columns=['category_length'], inplace=True)
 data_gmaps_metadata_nonlist_sindups.drop_duplicates(inplace=True)
 
