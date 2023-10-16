@@ -37,11 +37,12 @@ wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sud
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 sudo apt install  -y r-base
 sudo add-apt-repository  -y ppa:c2d4u.team/c2d4u4.0+ && sudo apt update
-sudo apt-get install  -y r-cran-tidyverse
+#sudo apt-get install  -y r-cran-tidyverse
 sudo apt-get install -y libssl-dev && sudo apt-get install -y libudunits2-dev # tidycensus requirements
 sudo apt install -y libgdal-dev # tidycensus requirements
 #sudo apt-get build-dep install -y r-cran-tidycensus E: Unable to find a source package for install
 cd /home/henry_grupo10_v1/0_scripts
+[ -f r_requirements.R ] && sudo rm r_requirements.R
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
 sudo Rscript r_requirements.R
 sudo apt update -qq -y && sudo apt upgrade -qq -y

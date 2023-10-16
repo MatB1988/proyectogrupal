@@ -3,8 +3,11 @@ wget -O - https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts
 
 # para bajar a servers
 cd ~/0_scripts
+[ -f cron_1_extract.sh ] && sudo rm cron_1_extract.sh
 sudo wget https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/cronjobs/cron_1_extract.sh
+[ -f cron_2_transform.sh ] && sudo rm cron_2_transform.sh
 sudo wget https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/cronjobs/cron_2_transform.sh
+[ -f cron_3_cargar.sh ] && sudo rm cron_3_cargar.sh
 sudo wget https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/cronjobs/cron_3_cargar.sh
 
 # cron job
