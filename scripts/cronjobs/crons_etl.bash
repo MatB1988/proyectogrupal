@@ -11,6 +11,6 @@ sudo wget https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts
 sudo wget https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/cronjobs/cron_3_cargar.sh
 
 # cron job
-00 03 * * * bash ~/0_scripts/cron_1_extract.sh >/dev/null 2>&1
-00 04 * * * bash ~/0_scripts/cron_2_transform.sh >/dev/null 2>&1
-00 05 * * * bash ~/0_scripts/cron_3_cargar.sh >/dev/null 2>&1
+00 01 * * * bash ~/0_scripts/cron_1_extract.sh >/dev/null 2>&1
+00 02 * * * bash ~/0_scripts/cron_2_transform.sh >/dev/null 2>&1
+00 03 * * * bash ~/0_scripts/cron_3_cargar.sh >/dev/null 2>&1
