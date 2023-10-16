@@ -49,7 +49,7 @@ pip list --local
 sudo R --version
 
 # Anaconda
-sudo mkdir -p downloads
+cd ~ && sudo mkdir -p downloads
 cd downloads && sudo sudo wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
 #-b flag Batch mode with no PATH modifications to ~/.bashrc.
 # Assumes that you agree to the license agreement.
