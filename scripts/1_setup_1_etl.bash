@@ -41,7 +41,10 @@ sudo R -e 'install.packages("xml2", dependencies = T, INSTALL_opts = c("--no-loc
 sudo add-apt-repository  -y ppa:c2d4u.team/c2d4u4.0+ && sudo apt update
 sudo apt-get install -y libssl-dev libcurl4-openssl-dev unixodbc-dev libxml2-dev libmariadb-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
 # tidycensus requirements
-sudo apt-get install -y libssl-dev libudunits2-dev libgdal-dev 
+sudo apt-get install -y libssl-dev libudunits2-dev libgdal-dev
+#sudo cp /etc/apt/sources.list /etc/apt/sources.list~
+#sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+#sudo apt-get update # but does not solve: E: Unable to find a source package for install
 #sudo apt-get build-dep install -y r-cran-tidycensus E: Unable to find a source package for install
 sudo apt update -qq -y
 cd /home/henry_grupo10_v1/0_scripts
