@@ -51,7 +51,7 @@ cd /home/henry_grupo10_v1/0_scripts
 [ -f r_requirements.R ] && sudo rm r_requirements.R
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
 sudo Rscript r_requirements.R
-sudo apt update -qq -y && sudo apt upgrade -qq -y
+cd ~ && sudo apt update -qq -y && sudo apt upgrade -qq -y
 
 # Anaconda
 cd ~ && sudo mkdir -p downloads
