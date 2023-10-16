@@ -30,24 +30,25 @@ cd ~
 
 # instalamos entorno de R
 sudo apt update
-sudo apt install software-properties-common dirmngr
+sudo apt install -y software-properties-common ca-certificates apt-transport-https gnupg dirmngr
 # add the signing key (by Michael Rutter) for these repos
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 # add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 sudo apt install  -y r-base
+# tidyverse requirements
+sudo R -e 'install.packages("xml2", dependencies = T, INSTALL_opts = c("--no-lock"))'
 sudo add-apt-repository  -y ppa:c2d4u.team/c2d4u4.0+ && sudo apt update
-#sudo apt-get install  -y r-cran-tidyverse
-sudo apt-get install -y libssl-dev && sudo apt-get install -y libudunits2-dev # tidycensus requirements
-sudo apt install -y libgdal-dev # tidycensus requirements
+sudo apt-get install -y libssl-dev libcurl4-openssl-dev unixodbc-dev libxml2-dev libmariadb-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+# tidycensus requirements
+sudo apt-get install -y libssl-dev libudunits2-dev libgdal-dev 
 #sudo apt-get build-dep install -y r-cran-tidycensus E: Unable to find a source package for install
+sudo apt update -qq -y
 cd /home/henry_grupo10_v1/0_scripts
 [ -f r_requirements.R ] && sudo rm r_requirements.R
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
 sudo Rscript r_requirements.R
 sudo apt update -qq -y && sudo apt upgrade -qq -y
-pip list --local
-sudo R --version
 
 # Anaconda
 cd ~ && sudo mkdir -p downloads
@@ -69,3 +70,7 @@ sudo ~/anaconda3/bin/activate pandas_scikit
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
 sudo ~/anaconda3/bin/conda install --name pandas_scikit --yes --file /home/henry_grupo10_v1/0_scripts/python_req_scikit.txt
 sudo ~/anaconda3/bin/deactivate
+
+# Resultados
+sudo ~/anaconda3/bin/conda list
+sudo R --version
