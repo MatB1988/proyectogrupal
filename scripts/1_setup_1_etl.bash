@@ -63,12 +63,12 @@ cd ~ && bash /home/henry_grupo10_v1/downloads/Anaconda3-2023.09-0-Linux-x86_64.s
 export PATH=$PATH:/anaconda3/bin
 sudo ~/anaconda3/bin/conda init && bash -l
 sudo ~/anaconda3/bin/conda config --set auto_activate_base false
-sudo ~/anaconda3/bin/conda create --yes --name pandas_geo
+sudo ~/anaconda3/bin/conda create --yes --name pandas_geo python=3.10
 sudo ~/anaconda3/bin/activate pandas_geo
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
 sudo ~/anaconda3/bin/conda install --name pandas_geo --yes --file /home/henry_grupo10_v1/0_scripts/python_req_geopandas.txt
 sudo ~/anaconda3/bin/deactivate
-sudo ~/anaconda3/bin/conda create --yes --name pandas_scikit
+sudo ~/anaconda3/bin/conda create --yes --name pandas_scikit python=3.10
 sudo ~/anaconda3/bin/activate pandas_scikit
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
 sudo ~/anaconda3/bin/conda install --name pandas_scikit --yes --file /home/henry_grupo10_v1/0_scripts/python_req_scikit.txt
