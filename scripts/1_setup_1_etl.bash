@@ -37,7 +37,6 @@ wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sud
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 sudo apt install  -y r-base
 # tidyverse requirements
-sudo R -e 'install.packages("xml2", dependencies = T, INSTALL_opts = c("--no-lock"))'
 sudo add-apt-repository  -y ppa:c2d4u.team/c2d4u4.0+ && sudo apt update
 sudo apt-get install -y libssl-dev libcurl4-openssl-dev unixodbc-dev libxml2-dev libmariadb-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
 # tidycensus requirements
@@ -47,6 +46,7 @@ sudo apt-get install -y libssl-dev libudunits2-dev libgdal-dev
 #sudo apt-get update # but does not solve: E: Unable to find a source package for install
 #sudo apt-get build-dep install -y r-cran-tidycensus E: Unable to find a source package for install
 sudo apt update -qq -y
+sudo R -e 'install.packages("xml2", dependencies = T, INSTALL_opts = c("--no-lock"))'
 cd /home/henry_grupo10_v1/0_scripts
 [ -f r_requirements.R ] && sudo rm r_requirements.R
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
