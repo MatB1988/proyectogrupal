@@ -16,9 +16,9 @@ sudo mkdir -p 0_scripts
 sudo mkdir -p 2_pipeline 3_output
 cd /home/henry_grupo10_v1/0_scripts
 [ -f python_req_geopandas.txt ] && sudo rm python_req_geopandas.txt
-sudo wget -O python_requirements.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_req_geopandas.txt
+sudo wget -O python_req_geopandas.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_req_geopandas.txt
 [ -f python_req_scikit.txt ] && sudo rm python_req_scikit.txt
-sudo wget -O python_requirements.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_req_scikit.txt
+sudo wget -O python_req_scikit.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_req_scikit.txt
 cd ~
 
 # creamos entornos de python
