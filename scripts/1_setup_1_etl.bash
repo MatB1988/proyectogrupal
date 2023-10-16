@@ -15,16 +15,18 @@ sudo mkdir -p 0_scripts
 # setup para transformacion
 sudo mkdir -p 2_pipeline 3_output
 cd /home/henry_grupo10_v1/0_scripts
-[ -f python_requirements.txt ] && sudo rm python_requirements.txt
-sudo wget -O python_requirements.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_requirements.txt
+[ -f python_req_geopandas.txt ] && sudo rm python_req_geopandas.txt
+sudo wget -O python_requirements.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_req_geopandas.txt
+[ -f python_req_scikit.txt ] && sudo rm python_req_scikit.txt
+sudo wget -O python_requirements.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_req_scikit.txt
 cd ~
 
 # creamos entornos de python
-sudo apt install python3.8-venv
-sudo python3 -m venv /home/henry_grupo10_v1/env_extract
-source /home/henry_grupo10_v1/env_extract/bin/activate
-sudo pip install -r /home/henry_grupo10_v1/0_scripts/python_requirements.txt
-deactivate
+#sudo apt install python3.8-venv
+#sudo python3 -m venv /home/henry_grupo10_v1/env_extract
+#source /home/henry_grupo10_v1/env_extract/bin/activate
+#sudo pip install -r /home/henry_grupo10_v1/0_scripts/python_req_geopandas.txt
+#deactivate
 
 # instalamos entorno de R
 sudo apt update
@@ -59,8 +61,8 @@ sudo ~/anaconda3/bin/conda config --set auto_activate_base false
 sudo ~/anaconda3/bin/conda create --yes --name pandas_geo
 sudo ~/anaconda3/bin/activate pandas_geo
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
-sudo ~/anaconda3/bin/conda install --name pandas_geo --yes numpy pandas geopandas pyarrow fastparquet pyogrio
+sudo ~/anaconda3/bin/conda install --name pandas_geo --yes -r /home/henry_grupo10_v1/0_scripts/python_req_geopandas.txt
 sudo ~/anaconda3/bin/conda create --yes --name pandas_scikit
 sudo ~/anaconda3/bin/activate pandas_scikit
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
-sudo ~/anaconda3/bin/conda install --name pandas_scikit --yes numpy pandas pyarrow fastparquet scikit-learn nltk
+sudo ~/anaconda3/bin/conda install --name pandas_scikit --yes -r /home/henry_grupo10_v1/0_scripts/python_req_scikit.txt
