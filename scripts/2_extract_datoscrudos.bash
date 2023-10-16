@@ -9,14 +9,13 @@ cd /home/henry_grupo10_v1/1_data_extract
 sudo gdown --folder https://drive.google.com/drive/folders/1ZheujPb0-kmlZEhi_dKo6Ge9o_7dUfEg
 
 # gdrive henry: reviews_estados
-#sudo mkdir -p gmaps && cd gmaps && sudo mkdir -p reviews_estados metadata_sitios
-#cd reviews_estados && sudo gdown --folder --remaining-ok 19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6
-cd ..
+sudo mkdir -p gmaps && cd gmaps
+#sudo gdown --folder --remaining-ok 19QNXr_BcqekFNFNYlKd0kcTXJ0Zg7lI6
 
 # gdrive henry: metadata_sitios
-#cd metadata_sitios && sudo gdown --folder 1RN879XLrXdtaXltzijPOmFA2Ir54mWBb
+#sudo gdown --folder 1RN879XLrXdtaXltzijPOmFA2Ir54mWBb
 # gdrive manuel: metadata_sitios
-#cd metadata_sitios && sudo gdown --folder https://drive.google.com/drive/folders/1olnuKLjT8W2QnCUUwh8uDuTTKVZyxQ0Z
+sudo gdown --folder https://drive.google.com/drive/folders/1olnuKLjT8W2QnCUUwh8uDuTTKVZyxQ0Z
 
 cd /home/henry_grupo10_v1/0_external
 sudo gdown 1_gDjMlGEVETNIG_iixvP5IGKE9Hjy9Vu # census_api.csv
@@ -27,13 +26,19 @@ sudo wget -O r_us_census.R https://raw.githubusercontent.com/MatB1988/proyectogr
 sudo Rscript r_us_census.R
 
 cd /home/henry_grupo10_v1/downloads
+[ -f tl_2020_us_zcta520.zip ] && sudo rm tl_2020_us_zcta520.zip
 sudo wget https://www2.census.gov/geo/tiger/TIGER2020/ZCTA520/tl_2020_us_zcta520.zip
 sudo mkdir -p /home/henry_grupo10_v1/1_data_extract/uscensus/zcta_geo
+sudo rm -rf /home/henry_grupo10_v1/1_data_extract/uscensus/zcta_geo/*
+cd /home/henry_grupo10_v1/downloads
 sudo unzip tl_2020_us_zcta520.zip -d /home/henry_grupo10_v1/1_data_extract/uscensus/zcta_geo/
+
+cd ~
+# copiamos a VM por que limite de transferencia en henry ha sido excedido
+sudo gsutil -m cp -r gs://0_datoscrudos/gmaps/* /home/henry_grupo10_v1/1_data_extract/gmaps/
 
 # actualizamos cloud storage; flags:
 # -m  multi-threaded/multi-processing
 # -r recursive
 # -n not run
-#gsutil -m rsync -r -n /home/henry_grupo10_v1/1_data_extract/ gs://0_datoscrudos/
 gsutil -m rsync -r /home/henry_grupo10_v1/1_data_extract/ gs://0_datoscrudos/

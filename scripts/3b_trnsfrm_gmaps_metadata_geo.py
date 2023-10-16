@@ -4,7 +4,7 @@ import json
 import numpy as np
 import pandas as pd
 import geopandas as geopd
-import pyogrio
+#import pyogrio
 import warnings
 warnings.filterwarnings('ignore', message='.*initial implementation of Parquet.*')
 
@@ -29,7 +29,7 @@ data_gmaps_metadata_sindups = pd.read_parquet(
 geodata_zcta = geopd.read_file(
     os.path.join(
         folder_data,folder_uscensus,folder_zcta_geo,'tl_2020_us_zcta520.shp')
-    ,engine="pyogrio"
+    #,engine="pyogrio"
     ).iloc[:,[1,5,9]]
 geodata_zcta.rename(
     columns = {"GEOID20":"zcta5_geoid",
@@ -108,5 +108,5 @@ data_gmaps_geoloc.to_csv(
 #### EXPORTAR DF FINAL
 # Exporto df_filtrado para probar union por latitud y longitud
 data_gmaps_metadata_zcta_usa_census.to_parquet(
-    os.path.join(folder_output,'gmaps_metadata_filtrado.parquet'))
+    os.path.join(folder_pipeline,'gmaps_metadata_filtrado.parquet'))
 ####

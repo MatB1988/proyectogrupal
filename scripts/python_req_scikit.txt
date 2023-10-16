@@ -1,0 +1,7 @@
+pyarrow
+fastparquet
+numpy
+pandas
+scikit-learn
+nltk
+tensorflow

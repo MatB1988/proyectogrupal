@@ -1,0 +1,7 @@
+pyarrow
+fastparquet
+numpy
+pandas
+geopandas
+pyogrio
+rtree

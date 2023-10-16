@@ -116,8 +116,9 @@ for i in range(0,max(state_name.index)+1):
     gmaps_state_norm.drop_duplicates(inplace=True)
     
     gmaps_state_norm_filtrada = gmaps_state_norm.loc[
-        (gmaps_state_norm['user_time_year'] >= 2020) &
-        (gmaps_state_norm['user_time_month'] >= 7)
+        ((gmaps_state_norm['user_time_year'] == 2020) &
+        (gmaps_state_norm['user_time_month'] >= 7)) |
+        ((gmaps_state_norm['user_time_year'] >= 2021))
         ].copy()
     
     # df final por estado

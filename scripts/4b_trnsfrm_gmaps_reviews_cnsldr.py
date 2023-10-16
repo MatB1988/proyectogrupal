@@ -42,7 +42,7 @@ data_gmaps_reviews_norm_filtrado_zcta = pd.merge(
     how='left'
     )
 
-# guardamos el archivo grande en output
+# guardamos el archivo grande en pipeline
 data_gmaps_reviews_norm_filtrado_zcta.to_parquet(
-    os.path.join(folder_output, "data_gmaps_reviews_norm.parquet")
+    os.path.join(folder_pipeline, "data_gmaps_reviews_norm.parquet")
     )
