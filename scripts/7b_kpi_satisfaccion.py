@@ -73,8 +73,8 @@ data_business_reviews_kpi_satisfaccion = pd.merge(
         "average_rating","rescaled_rating"])
 
 # Calcular el KPI de satisfacción de suma ponderada por restaurante y año-mes
-data_business_reviews_kpi_satisfaccion['kpi_satisfaccion_suma'] = data_business_reviews_kpi_satisfaccion[
-    'kpi_satisfaccion_rating'] + data_business_reviews_kpi_satisfaccion['kpi_satisfaccion_sentimiento']
+data_business_reviews_kpi_satisfaccion['kpi_satisfaccion_suma'] = (data_business_reviews_kpi_satisfaccion[
+    'kpi_satisfaccion_rating'] + data_business_reviews_kpi_satisfaccion['kpi_satisfaccion_sentimiento'])*100
 
 # Guardar el DataFrame final como un archivo parquet
 data_business_reviews_kpi_satisfaccion.to_parquet(
