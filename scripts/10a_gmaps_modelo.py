@@ -38,7 +38,7 @@ data_gmaps_reviews = pd.read_parquet(
 # Elimino nan de Misc
 independent_df = data_gmaps_metadata.copy()
 independent_df.dropna(subset=['MISC'], inplace=True)
-independent_df.info()
+#independent_df.info()
 
 # Creo una lista de diccionarios con 'MISC' y 'gmap_id'
 attributes_list = [
@@ -57,40 +57,50 @@ def check_attribute_presence(service_options, attribute_name):
 
 attribute_name = 'Delivery'
 
-# Aplico la función a la columna 'Service options' de attributes_df y guarda el resultado en el mismo DataFrame
-attributes_df['RestaurantsDelivery'] = attributes_df['Service options'].apply(lambda x: check_attribute_presence(x, attribute_name))
+# Aplico la función a la columna 'Service options' de attributes_df y
+#guarda el resultado en el mismo DataFrame
+attributes_df['RestaurantsDelivery'] = attributes_df['Service options'].apply(
+    lambda x: check_attribute_presence(x, attribute_name))
 
-# Lleno los valores NaN en 'RestaurantsDelivery' con 0 (si no se encontró 'Delivery')
+# Lleno los valores NaN en 'RestaurantsDelivery' con 0
+#(si no se encontró 'Delivery')
 attributes_df['RestaurantsDelivery'].fillna(0, inplace=True)
 
 attribute_name = 'Takeout'
 
 # Aplico la función a la columna 'Service options' de attributes_df
-attributes_df['RestaurantsTakeOut'] = attributes_df['Service options'].apply(lambda x: check_attribute_presence(x, attribute_name))
+attributes_df['RestaurantsTakeOut'] = attributes_df['Service options'].apply(
+    lambda x: check_attribute_presence(x, attribute_name))
 
-# Lleno los valores NaN en 'RestaurantsTakeOut' con 0 (si no se encontró 'Takeout')
+# Lleno los valores NaN en 'RestaurantsTakeOut' con 0
+#(si no se encontró 'Takeout')
 attributes_df['RestaurantsTakeOut'].fillna(0, inplace=True)
 
 attribute_name = 'Outdoor seating'
 
 # Aplico la función a la columna 'Service options' de attributes_df
-attributes_df['OutdoorSeating'] = attributes_df['Service options'].apply(lambda x: check_attribute_presence(x, attribute_name))
+attributes_df['OutdoorSeating'] = attributes_df['Service options'].apply(
+    lambda x: check_attribute_presence(x, attribute_name))
 
-# Lleno los valores NaN en 'OutdoorSeating' con 0 (si no se encontró 'Outdoor seating')
+# Lleno los valores NaN en 'OutdoorSeating' con 0
+#(si no se encontró 'Outdoor seating')
 attributes_df['RestaurantsTakeOut'].fillna(0, inplace=True)
 
 attribute_name = 'Accepts reservations'
 
 # Aplico la función a la columna 'Service options' de attributes_df
-attributes_df['RestaurantsReservations'] = attributes_df['Planning'].apply(lambda x: check_attribute_presence(x, attribute_name))
+attributes_df['RestaurantsReservations'] = attributes_df['Planning'].apply(
+    lambda x: check_attribute_presence(x, attribute_name))
 
-# Lleno los valores NaN en 'RestaurantsReservations' con 0 (si no se encontró 'Accepts reservations')
+# Lleno los valores NaN en 'RestaurantsReservations' con 0
+#(si no se encontró 'Accepts reservations')
 attributes_df['RestaurantsReservations'].fillna(0, inplace=True)
 
 attribute_name = "Kids' menu"
 
 # Aplico la función a la columna 'Service options' de attributes_df
-attributes_df['GoodForKids'] = attributes_df['Offerings'].apply(lambda x: check_attribute_presence(x, attribute_name))
+attributes_df['GoodForKids'] = attributes_df['Offerings'].apply(
+    lambda x: check_attribute_presence(x, attribute_name))
 
 # Lleno los valores NaN en 'GoodForKids' con 0 (si no se encontró 'Kids' menu')
 attributes_df['GoodForKids'].fillna(0, inplace=True)
@@ -98,17 +108,21 @@ attributes_df['GoodForKids'].fillna(0, inplace=True)
 attribute_name = "Reservations required"
 
 # Aplico la función a la columna 'Service options' de attributes_df
-attributes_df['ByAppointmentOnly'] = attributes_df['Health and safety'].apply(lambda x: check_attribute_presence(x, attribute_name))
+attributes_df['ByAppointmentOnly'] = attributes_df['Health and safety'].apply(
+    lambda x: check_attribute_presence(x, attribute_name))
 
-# Lleno los valores NaN en 'ByAppointmentOnly' con 0 (si no se encontró 'Reservations required')
+# Lleno los valores NaN en 'ByAppointmentOnly' con 0
+# (si no se encontró 'Reservations required')
 attributes_df['ByAppointmentOnly'].fillna(0, inplace=True)
 
 attribute_name = "Wheelchair accessible seating"
 
 # Aplico la función a la columna 'Service options' de attributes_df
-attributes_df['WheelchairAccessible'] = attributes_df['Accessibility'].apply(lambda x: check_attribute_presence(x, attribute_name))
+attributes_df['WheelchairAccessible'] = attributes_df['Accessibility'].apply(
+    lambda x: check_attribute_presence(x, attribute_name))
 
-# Lleno los valores NaN en 'WheelchairAccessible' con 0 (si no se encontró 'Wheelchair accessible seating')
+# Lleno los valores NaN en 'WheelchairAccessible' con 0
+# (si no se encontró 'Wheelchair accessible seating')
 attributes_df['WheelchairAccessible'].fillna(0, inplace=True)
 
 # Genero una nueva funcion ya que a los proximos atibutos les voy a mandar una lista a verificar
@@ -121,20 +135,26 @@ def check_attributes(attribute_lista, attributes):
             return 1
     return 0
 
-attribute_lista = ['Groups', 'Family-friendly', 'Family friendly', 'College students', 'University students']
+attribute_lista = ['Groups', 'Family-friendly', 'Family friendly',
+                   'College students', 'University students']
 
 # Aplico la función a la columna 'Crowd' de attributes_df y crea una nueva columna
-attributes_df['RestaurantsGoodForGroups'] = attributes_df['Crowd'].apply(lambda x: check_attributes(x, attribute_lista))
+attributes_df['RestaurantsGoodForGroups'] = attributes_df['Crowd'].apply(
+    lambda x: check_attributes(x, attribute_lista))
 
-# Lleno los valores NaN en 'RestaurantsGoodForGroups' con 0 (si no se encontró 'Groups','Family-friendly','Family friendly','College students','University students')
+# Lleno los valores NaN en 'RestaurantsGoodForGroups' con 0
+# (si no se encontró 'Groups','Family-friendly','Family friendly',
+#'College students','University students')
 attributes_df['RestaurantsGoodForGroups'].fillna(0, inplace=True)
 
 attribute_name = "Credit cards"
 
 # Aplico la función a la columna 'Service options' de attributes_df
-attributes_df['BusinessAcceptsCreditCards'] = attributes_df['Payments'].apply(lambda x: check_attribute_presence(x, attribute_name))
+attributes_df['BusinessAcceptsCreditCards'] = attributes_df['Payments'].apply(
+    lambda x: check_attribute_presence(x, attribute_name))
 
-# Lleno los valores NaN en 'BusinessAcceptsCreditCards' con 0 (si no se encontró 'Credit cards')
+# Lleno los valores NaN en 'BusinessAcceptsCreditCards' con 0
+#(si no se encontró 'Credit cards')
 attributes_df['BusinessAcceptsCreditCards'].fillna(0, inplace=True)
 
 
@@ -142,7 +162,8 @@ attributes_df['BusinessAcceptsCreditCards'].fillna(0, inplace=True)
 columnas_seleccionadas = attributes_df.iloc[:, 15:]
 
 # Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
-data_gmaps_metadata = data_gmaps_metadata.merge(columnas_seleccionadas, on='gmap_id', how='left')
+data_gmaps_metadata = data_gmaps_metadata.merge(
+    columnas_seleccionadas, on='gmap_id', how='left')
 
 # Elimino nombres repetidos ya que los tomo como franquicias
 # 'locations' es el número máximo de repeticiones permitidas para un 'name'
@@ -165,7 +186,9 @@ data_gmaps_metadata = data_gmaps_metadata.drop("price", axis=1)
 
 
 # Selecciono las columnas numéricas
-columnas_numericas = ['avg_rating','RestaurantsDelivery', 'OutdoorSeating', 'BusinessAcceptsCreditCards','RestaurantsTakeOut', 'ByAppointmentOnly', 'WheelchairAccessible', 'GoodForKids',
+columnas_numericas = ['avg_rating','RestaurantsDelivery', 'OutdoorSeating',
+                      'BusinessAcceptsCreditCards','RestaurantsTakeOut',
+                      'ByAppointmentOnly','WheelchairAccessible', 'GoodForKids',
                       'RestaurantsReservations', 'RestaurantsGoodForGroups']
 
 # Calculo la matriz de correlación
@@ -177,7 +200,9 @@ matriz_correlacion = matriz_correlacion.loc[:, matriz_correlacion.std() != 0]
 correlation = data_gmaps_metadata.corr(numeric_only = True)
 
 # Selecciono las columnas numéricas
-columnas_numericas = ['avg_rating','RestaurantsDelivery', 'OutdoorSeating', 'BusinessAcceptsCreditCards','RestaurantsTakeOut', 'ByAppointmentOnly', 'WheelchairAccessible', 'GoodForKids',
+columnas_numericas = ['avg_rating','RestaurantsDelivery', 'OutdoorSeating',
+                      'BusinessAcceptsCreditCards','RestaurantsTakeOut',
+                      'ByAppointmentOnly', 'WheelchairAccessible', 'GoodForKids',
                       'RestaurantsReservations', 'RestaurantsGoodForGroups']
 
 # Calculo la matriz de correlación
@@ -190,7 +215,12 @@ data_gmaps_metadata2 = data_gmaps_metadata.fillna(0)
 # @title Modelo Random Forest
 
 # Divido los datos originales en entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(data_gmaps_metadata2[['BusinessAcceptsCreditCards', 'RestaurantsGoodForGroups', 'WheelchairAccessible', 'ByAppointmentOnly', 'GoodForKids', 'RestaurantsReservations', 'OutdoorSeating', 'RestaurantsTakeOut', 'RestaurantsDelivery']], data_gmaps_metadata2['avg_rating'], test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    data_gmaps_metadata2[
+        ['BusinessAcceptsCreditCards', 'RestaurantsGoodForGroups', 'WheelchairAccessible',
+         'ByAppointmentOnly', 'GoodForKids', 'RestaurantsReservations',
+         'OutdoorSeating', 'RestaurantsTakeOut', 'RestaurantsDelivery']
+        ], data_gmaps_metadata2['avg_rating'], test_size=0.2, random_state=42)
 
 # Creo y entreno un modelo Random Forest
 random_forest_model = RandomForestRegressor(random_state=42)
@@ -207,29 +237,25 @@ predictions_df['Predictions'] = y_pred
 
 # Calculo el error cuadrático medio (MSE)
 mse = mean_squared_error(y_test, y_pred)
-print(f'Error Cuadrático Medio (MSE): {mse}')
-
-"""
-En mi análisis del modelo que acabo de construir, es importante destacar que la variable que estamos tratando de predecir tiene un rango de valores de 0 a 5. Un Error Cuadrático Medio (MSE) de 0.2459, como el que hemos obtenido, podría considerarse relativamente alto en este contexto. En problemas donde la variable objetivo está en una escala de 0 a 5, un MSE cercano a cero indicaría que el modelo se ajusta muy bien a los datos y tiene un rendimiento bastante preciso.
-
-Sin embargo, con un MSE de 0.2459, estamos observando un nivel de error que indica que el modelo podría no estar capturando completamente la variabilidad en los datos. Esto podría deberse a diversas razones, como la complejidad del problema, la elección de las características o la cantidad de datos disponibles.
-"""
+#print(f'Error Cuadrático Medio (MSE): {mse}')
 
 # Uno las predicciones al DataFrame original
 data_gmaps_metadata2 = data_gmaps_metadata2.join(predictions_df['Predictions'])
 
 # Selecciono todas las filas en el DataFrame original para hacer predicciones
-features_all = data_gmaps_metadata2[['BusinessAcceptsCreditCards', 'RestaurantsGoodForGroups', 'WheelchairAccessible', 'ByAppointmentOnly', 'GoodForKids', 'RestaurantsReservations', 'OutdoorSeating', 'RestaurantsTakeOut', 'RestaurantsDelivery']]
+features_all = data_gmaps_metadata2[
+    ['BusinessAcceptsCreditCards', 'RestaurantsGoodForGroups',
+     'WheelchairAccessible','ByAppointmentOnly',
+     'GoodForKids', 'RestaurantsReservations', 'OutdoorSeating',
+     'RestaurantsTakeOut', 'RestaurantsDelivery']]
 
 # Realizo predicciones para todas las filas
-predictions_all = random_forest_model.predict(features_all)  # Asegúrate de utilizar el modelo entrenado
+# Asegúrate de utilizar el modelo entrenado
+predictions_all = random_forest_model.predict(features_all)
 
 # Agrego las predicciones como una nueva columna en el DataFrame original
 data_gmaps_metadata2['Predictions'] = predictions_all
 
-# importamos el df
-data_gmaps_reviews = pd.read_parquet(
-    os.path.join(folder_output,'data_gmaps_reviews_norm.parquet'))
 
 # Descargo los recursos necesarios de NLTK si no los tienes ya
 nltk.download('vader_lexicon')
@@ -255,10 +281,12 @@ def classify_sentiment_vader(compound_score):
         return 'Neutral'
 
 # Aplico la función de clasificación de sentimientos al DataFrame
-data_gmaps_reviews['compound_score'] = data_gmaps_reviews['user_text'].apply(compound_score)
+data_gmaps_reviews['compound_score'] = data_gmaps_reviews['user_text'].apply(
+    compound_score)
 
 # Aplico la función de classify_sentiment_vadera_dficación de sentimientos al DataFrame
-data_gmaps_reviews['sentiment'] = data_gmaps_reviews['compound_score'].apply(classify_sentiment_vader)
+data_gmaps_reviews['sentiment'] = data_gmaps_reviews['compound_score'].apply(
+    classify_sentiment_vader)
 
 # Asigno pesos a cada categoría de sentimiento
 sentiment_weights = {'Positive': 2, 'Neutral': 1, 'Negative': 0}
@@ -271,19 +299,24 @@ def ponderacion_average(group):
     return ponderacion_scores.sum() / ponderacion_scores.count()
 
 # Aplico la función para calcular el promedio ponderado
-ponderacion_avg_df = data_gmaps_reviews.groupby('gmap_id').apply(ponderacion_average).reset_index()
+ponderacion_avg_df = data_gmaps_reviews.groupby('gmap_id').apply(
+    ponderacion_average).reset_index()
 ponderacion_avg_df.columns = ['gmap_id', 'ponderacion_average']
 
 # Realizo la fusión entre data_gmaps_metadata2 y ponderacion_avg_df
-data_gmaps_metadata2 = data_gmaps_metadata2.merge(ponderacion_avg_df, on='gmap_id', how='left')
+data_gmaps_metadata2 = data_gmaps_metadata2.merge(
+    ponderacion_avg_df, on='gmap_id', how='left')
 
 
-# Me doy cuenta que estas columnas tendrian que ser numero entero y quedaron como float las paso a numero entero
-columns_to_convert = ['RestaurantsDelivery', 'RestaurantsTakeOut', 'OutdoorSeating', 'RestaurantsReservations',
-                      'GoodForKids', 'ByAppointmentOnly', 'WheelchairAccessible', 'RestaurantsGoodForGroups',
+# Me doy cuenta que estas columnas tendrian que ser numero entero
+# y quedaron como float las paso a numero entero
+columns_to_convert = ['RestaurantsDelivery', 'RestaurantsTakeOut', 'OutdoorSeating',
+                      'RestaurantsReservations','GoodForKids', 'ByAppointmentOnly',
+                      'WheelchairAccessible', 'RestaurantsGoodForGroups',
                       'BusinessAcceptsCreditCards']
 
-data_gmaps_metadata2[columns_to_convert] = data_gmaps_metadata2[columns_to_convert].astype(int)
+data_gmaps_metadata2[columns_to_convert] = data_gmaps_metadata2[
+    columns_to_convert].astype(int)
 
 data_gmaps_metadata2.isna().sum()
 
@@ -295,11 +328,18 @@ data_gmaps_metadata2.isna().sum()
 #@title Red Neural para elegir prospectos y tendencias
 
 # Selecciono las características (features) y el objetivo (target)
-features = ['Predictions', 'ponderacion_average', 'latitude', 'longitude', 'num_of_reviews', 'RestaurantsDelivery', 'RestaurantsTakeOut', 'OutdoorSeating', 'RestaurantsReservations','GoodForKids', 'ByAppointmentOnly', 'WheelchairAccessible', 'RestaurantsGoodForGroups','BusinessAcceptsCreditCards']
+features = ['Predictions', 'ponderacion_average', 'latitude',
+            'longitude','num_of_reviews',
+            'RestaurantsDelivery', 'RestaurantsTakeOut',
+            'OutdoorSeating', 'RestaurantsReservations'
+            'GoodForKids', 'ByAppointmentOnly', 'WheelchairAccessible',
+            'RestaurantsGoodForGroups','BusinessAcceptsCreditCards']
 target = 'avg_rating'
 
 # Divido los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(data_gmaps_metadata2[features],data_gmaps_metadata2[target], test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    data_gmaps_metadata2[features],data_gmaps_metadata2[target],
+    test_size=0.2, random_state=42)
 
 # Escalo las características para acelerar el entrenamiento
 scaler = StandardScaler()
@@ -324,12 +364,15 @@ y_pred = model.predict(X_test)
 
 # Calculo el Error Cuadrático Medio (MSE)
 mse = mean_squared_error(y_test, y_pred)
-print(f'Error Cuadrático Medio (MSE): {mse}')
+#print(f'Error Cuadrático Medio (MSE): {mse}')
 
 # Ordeno los restaurantes por sus predicciones y ponderaciones promedio
-data_gmaps_metadata2['predicted_rating'] = model.predict(scaler.transform(data_gmaps_metadata2[features]))
-top_restaurants = data_gmaps_metadata2.sort_values(by=['state_name', 'predicted_rating'], ascending=[True, False])
-bottom_restaurants = data_gmaps_metadata2.sort_values(by=['state_name', 'predicted_rating'], ascending=[True, True])
+data_gmaps_metadata2['predicted_rating'] = model.predict(
+    scaler.transform(data_gmaps_metadata2[features]))
+top_restaurants = data_gmaps_metadata2.sort_values(
+    by=['state_name', 'predicted_rating'], ascending=[True, False])
+bottom_restaurants = data_gmaps_metadata2.sort_values(
+    by=['state_name', 'predicted_rating'], ascending=[True, True])
 
 # Obtener los 5 mejores y 5 peores restaurantes de cada estado
 top_restaurants = top_restaurants.groupby('state_name').head()
@@ -353,11 +396,11 @@ data_gmaps_metadata2 = data_gmaps_metadata2[columnas_deseadas]
 
 # Renombro las columnas
 nombres_columnas = {
-    'gmap_id': 'id_business',
-    'avg_rating': 'rating',
+    'gmap_id': 'business_id',
+    'avg_rating': 'rating_historico',
     'Predictions': 'predictions',
     'ponderacion_average': 'weighted_avg',
-    'predicted_rating': 'predicted_rating'
+    'predicted_rating': 'predicted_rating_historico'
 }
 
 data_gmaps_metadata2 = data_gmaps_metadata2.rename(columns=nombres_columnas)
