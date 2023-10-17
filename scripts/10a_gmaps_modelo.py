@@ -4,9 +4,9 @@
 import json
 import pandas as pd
 import numpy as np
-import pyarrow.parquet as pq
+#import pyarrow.parquet as pq
 import os
-import fastparquet as fp
+#import fastparquet as fp
 
 # Analisis de sentimientos
 import nltk
