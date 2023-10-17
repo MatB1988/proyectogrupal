@@ -26,7 +26,7 @@ data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps.groupby(
     ["state_code","ml_categoria"]
     )["ml_indice"].rank(pct=True)
 
-data_ml_gmaps.drop(columns=["predictions","weighted_avg"], inplace=True)
+#data_ml_gmaps.drop(columns=["predictions","weighted_avg"], inplace=True)
 #ml_yelp = pd.read_parquet(os.path.join(folder_pipeline,'ml_yelp.parquet'))
 #ml_yelp.drop(columns=["name","address","latitude","longitude"], inplace=True)
 
