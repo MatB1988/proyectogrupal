@@ -23,8 +23,7 @@ data_ml_gmaps["ml_indice_rank_codpostal"] = data_ml_gmaps.groupby(
     ["codigo_postal_zcta","ml_categoria"]
     )["ml_indice"].rank(pct=True)
 data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps.groupby(
-    ["state_code","ml_categoria"]
-    )["ml_indice"].rank(pct=True)
+    ["state_code","ml_categoria"])["ml_indice"].rank(pct=True)*100
 
 data_ml_gmaps.rename(
     columns={"predictions":"rndmfrst_predicted_rating_hist",

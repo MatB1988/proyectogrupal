@@ -12,14 +12,6 @@ folder_output = "3_output"
 data_ml_gmaps = pd.read_parquet(
     os.path.join(folder_pipeline,'data_ml_gmaps.parquet'))
 
-data_ml_gmaps["ml_indice"] = data_ml_gmaps["rating_historico"] - data_ml_gmaps["predicted_rating_historico"]
-data_ml_gmaps["ml_categoria"] = np.where(data_ml_gmaps["ml_indice"]<0, "prospecto", "tendencia")
-data_ml_gmaps["ml_indice_rank_codpostal"] = data_ml_gmaps.groupby(
-    ["zcta5_geoid","ml_categoria"])["ml_indice"].rank(pct=True)
-data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps.groupby(
-    ["state_code","ml_categoria"])["ml_indice"].rank(pct=True)
-
-
 columnas_atributos = [
     'business_id','zcta5_geoid','state_code',
     'RestaurantsDelivery','RestaurantsTakeOut', 'OutdoorSeating',
