@@ -15,10 +15,11 @@ business_kpi_satisfaccion = pd.read_parquet(
 
 business_kpi_cumplimiento = pd.read_parquet(
     os.path.join(folder_pipeline,'data_kpi_gmaps_cumplimiento.parquet'))
+
 business_kpi_cumplimiento.rename(
     columns={"zcta5_geoid":"codigo_postal_zcta"}, inplace=True)
 business_kpi_cumplimiento.drop(
-    ["atributos_business_sum","atributos_cp_max","atributos_state_max"],
+    columns=["atributos_business_sum","atributos_cp_max","atributos_state_max"],
     inplace=True)
 
 # datos ficticios
