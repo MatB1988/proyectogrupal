@@ -29,7 +29,7 @@ folder_output = "3_output"
 
 # importamos el df
 data_gmaps_metadata = pd.read_parquet(
-    os.path.join(folder_output,'gmaps_metadata_filtrado.parquet'))
+    os.path.join(folder_pipeline,'gmaps_metadata_filtrado.parquet'))
 
 
 # Elimino nan de Misc
