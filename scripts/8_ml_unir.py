@@ -26,6 +26,7 @@ data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps.groupby(
     ["state_code","ml_categoria"]
     )["ml_indice"].rank(pct=True)
 
+#data_ml_gmaps.drop(columns=["predictions","weighted_avg"], inplace=True)
 #ml_yelp = pd.read_parquet(os.path.join(folder_pipeline,'ml_yelp.parquet'))
 #ml_yelp.drop(columns=["name","address","latitude","longitude"], inplace=True)
 
@@ -38,8 +39,6 @@ ml_yelp_ficticio = data_ml_gmaps.loc[
 
 n_size = len(ml_yelp_ficticio)
 ml_yelp_ficticio["rating_historico"] = np.random.normal(loc=3.5, scale=0.3, size=(n_size))
-ml_yelp_ficticio["predictions"] = np.random.normal(loc=3.5, scale=0.3, size=(n_size))
-ml_yelp_ficticio["weighted_avg"] = np.random.normal(loc=3.5, scale=0.3, size=(n_size))
 ml_yelp_ficticio["predicted_rating_historico"] = np.random.normal(loc=3.5, scale=0.3, size=(n_size))
 
 business_ml = pd.merge(
