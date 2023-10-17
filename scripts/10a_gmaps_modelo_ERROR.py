@@ -29,13 +29,12 @@ folder_output = "3_output"
 
 # importamos el df
 data_gmaps_metadata = pd.read_parquet(
-    os.path.join(folder_output,'gmaps_metadata_filtrado.parquet'))
+    os.path.join(folder_pipeline,'gmaps_metadata_filtrado.parquet'))
 
 
 # Elimino nan de Misc
 independent_df = data_gmaps_metadata.copy()
 independent_df.dropna(subset=['MISC'], inplace=True)
-independent_df.info()
 
 # Creo una lista de diccionarios con 'MISC' y 'gmap_id'
 attributes_list = [
@@ -54,59 +53,80 @@ def check_attribute_presence(service_options, attribute_name):
 
 attribute_name = 'Delivery'
 
-# Aplico la función a la columna 'Service options' de attributes_df y guarda el resultado en el mismo DataFrame
+# Aplico la función a la columna 'Service options' de attributes_df
 attributes_df['RestaurantsDelivery'] = attributes_df['Service options'].apply(lambda x: check_attribute_presence(x, attribute_name))
 
+# Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'RestaurantsDelivery']], on='gmap_id', how='left')
+
 # Lleno los valores NaN en 'RestaurantsDelivery' con 0 (si no se encontró 'Delivery')
-attributes_df['RestaurantsDelivery'].fillna(0, inplace=True)
+data_gmaps_metadata['RestaurantsDelivery'].fillna(0, inplace=True)
 
 attribute_name = 'Takeout'
 
 # Aplico la función a la columna 'Service options' de attributes_df
 attributes_df['RestaurantsTakeOut'] = attributes_df['Service options'].apply(lambda x: check_attribute_presence(x, attribute_name))
 
+# Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'RestaurantsTakeOut']], on='gmap_id', how='left')
+
 # Lleno los valores NaN en 'RestaurantsTakeOut' con 0 (si no se encontró 'Takeout')
-attributes_df['RestaurantsTakeOut'].fillna(0, inplace=True)
+data_gmaps_metadata['RestaurantsTakeOut'].fillna(0, inplace=True)
 
 attribute_name = 'Outdoor seating'
 
 # Aplico la función a la columna 'Service options' de attributes_df
 attributes_df['OutdoorSeating'] = attributes_df['Service options'].apply(lambda x: check_attribute_presence(x, attribute_name))
 
+# Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'OutdoorSeating']], on='gmap_id', how='left')
+
 # Lleno los valores NaN en 'OutdoorSeating' con 0 (si no se encontró 'Outdoor seating')
-attributes_df['RestaurantsTakeOut'].fillna(0, inplace=True)
+data_gmaps_metadata['RestaurantsTakeOut'].fillna(0, inplace=True)
 
 attribute_name = 'Accepts reservations'
 
 # Aplico la función a la columna 'Service options' de attributes_df
 attributes_df['RestaurantsReservations'] = attributes_df['Planning'].apply(lambda x: check_attribute_presence(x, attribute_name))
 
+# Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'RestaurantsReservations']], on='gmap_id', how='left')
+
 # Lleno los valores NaN en 'RestaurantsReservations' con 0 (si no se encontró 'Accepts reservations')
-attributes_df['RestaurantsReservations'].fillna(0, inplace=True)
+data_gmaps_metadata['RestaurantsReservations'].fillna(0, inplace=True)
 
 attribute_name = "Kids' menu"
 
 # Aplico la función a la columna 'Service options' de attributes_df
 attributes_df['GoodForKids'] = attributes_df['Offerings'].apply(lambda x: check_attribute_presence(x, attribute_name))
 
+# Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'GoodForKids']], on='gmap_id', how='left')
+
 # Lleno los valores NaN en 'GoodForKids' con 0 (si no se encontró 'Kids' menu')
-attributes_df['GoodForKids'].fillna(0, inplace=True)
+data_gmaps_metadata['GoodForKids'].fillna(0, inplace=True)
 
 attribute_name = "Reservations required"
 
 # Aplico la función a la columna 'Service options' de attributes_df
 attributes_df['ByAppointmentOnly'] = attributes_df['Health and safety'].apply(lambda x: check_attribute_presence(x, attribute_name))
 
+# Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'ByAppointmentOnly']], on='gmap_id', how='left')
+
 # Lleno los valores NaN en 'ByAppointmentOnly' con 0 (si no se encontró 'Reservations required')
-attributes_df['ByAppointmentOnly'].fillna(0, inplace=True)
+data_gmaps_metadata['ByAppointmentOnly'].fillna(0, inplace=True)
 
 attribute_name = "Wheelchair accessible seating"
 
 # Aplico la función a la columna 'Service options' de attributes_df
 attributes_df['WheelchairAccessible'] = attributes_df['Accessibility'].apply(lambda x: check_attribute_presence(x, attribute_name))
 
+# Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'WheelchairAccessible']], on='gmap_id', how='left')
+
 # Lleno los valores NaN en 'WheelchairAccessible' con 0 (si no se encontró 'Wheelchair accessible seating')
-attributes_df['WheelchairAccessible'].fillna(0, inplace=True)
+data_gmaps_metadata['WheelchairAccessible'].fillna(0, inplace=True)
 
 # Genero una nueva funcion ya que a los proximos atibutos les voy a mandar una lista a verificar
 # Función para verificar si al menos uno de los atributos está presente en la lista
@@ -123,23 +143,22 @@ attribute_lista = ['Groups', 'Family-friendly', 'Family friendly', 'College stud
 # Aplico la función a la columna 'Crowd' de attributes_df y crea una nueva columna
 attributes_df['RestaurantsGoodForGroups'] = attributes_df['Crowd'].apply(lambda x: check_attributes(x, attribute_lista))
 
+# Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'RestaurantsGoodForGroups']], on='gmap_id', how='left')
+
 # Lleno los valores NaN en 'RestaurantsGoodForGroups' con 0 (si no se encontró 'Groups','Family-friendly','Family friendly','College students','University students')
-attributes_df['RestaurantsGoodForGroups'].fillna(0, inplace=True)
+data_gmaps_metadata['RestaurantsGoodForGroups'].fillna(0, inplace=True)
 
 attribute_name = "Credit cards"
 
 # Aplico la función a la columna 'Service options' de attributes_df
 attributes_df['BusinessAcceptsCreditCards'] = attributes_df['Payments'].apply(lambda x: check_attribute_presence(x, attribute_name))
 
-# Lleno los valores NaN en 'BusinessAcceptsCreditCards' con 0 (si no se encontró 'Credit cards')
-attributes_df['BusinessAcceptsCreditCards'].fillna(0, inplace=True)
-
-
-# Selecciono las columnas deseadas
-columnas_seleccionadas = attributes_df.iloc[:, 15:]
-
 # Combino los datos actualizados en data_gmaps_metadata usando la columna 'gmap_id'
-data_gmaps_metadata = data_gmaps_metadata.merge(columnas_seleccionadas, on='gmap_id', how='left')
+data_gmaps_metadata = data_gmaps_metadata.merge(attributes_df[['gmap_id', 'BusinessAcceptsCreditCards']], on='gmap_id', how='left')
+
+# Lleno los valores NaN en 'BusinessAcceptsCreditCards' con 0 (si no se encontró 'Credit cards')
+data_gmaps_metadata['BusinessAcceptsCreditCards'].fillna(0, inplace=True)
 
 # Elimino nombres repetidos ya que los tomo como franquicias
 # 'locations' es el número máximo de repeticiones permitidas para un 'name'
@@ -157,44 +176,13 @@ data_gmaps_metadata = data_gmaps_metadata[data_gmaps_metadata['name'].isin(valid
 # Elimino la columna MISC ya que saque los atibutos que necesitaba
 data_gmaps_metadata = data_gmaps_metadata.drop("MISC", axis=1)
 
-# Elimino la columna price ya que saque los atibutos que necesitaba
-data_gmaps_metadata = data_gmaps_metadata.drop("price", axis=1)
-
-
-# Selecciono las columnas numéricas
-columnas_numericas = ['avg_rating','RestaurantsDelivery', 'OutdoorSeating', 'BusinessAcceptsCreditCards','RestaurantsTakeOut', 'ByAppointmentOnly', 'WheelchairAccessible', 'GoodForKids',
-                      'RestaurantsReservations', 'RestaurantsGoodForGroups']
-
-# Calculo la matriz de correlación
-matriz_correlacion = data_gmaps_metadata[columnas_numericas]
-
-matriz_correlacion = matriz_correlacion.loc[:, matriz_correlacion.std() != 0]
-
-#Se Crea la correlacion entre las variables numericas:
-correlation = data_gmaps_metadata.corr(numeric_only = True)
-
-# Selecciono las columnas numéricas
-columnas_numericas = ['avg_rating','RestaurantsDelivery', 'OutdoorSeating', 'BusinessAcceptsCreditCards','RestaurantsTakeOut', 'ByAppointmentOnly', 'WheelchairAccessible', 'GoodForKids',
-                      'RestaurantsReservations', 'RestaurantsGoodForGroups']
-
-# Calculo la matriz de correlación
-matriz_correlacion = data_gmaps_metadata[columnas_numericas]
-
-
 # Reemplazo los valores NaN con 0 y lo guardo en un nuevo df
 data_gmaps_metadata2 = data_gmaps_metadata.fillna(0)
 
-# @title Modelo Random Forest
+# Modelo Random Forest
 
 # Divido los datos originales en entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(data_gmaps_metadata2[['BusinessAcceptsCreditCards', 'RestaurantsGoodForGroups', 'WheelchairAccessible', 'ByAppointmentOnly', 'GoodForKids', 'RestaurantsReservations', 'OutdoorSeating', 'RestaurantsTakeOut', 'RestaurantsDelivery']], data_gmaps_metadata2['avg_rating'], test_size=0.2, random_state=42)
-
-# Creo y entreno un modelo Random Forest
-random_forest_model = RandomForestRegressor(random_state=42)
-random_forest_model.fit(X_train, y_train)
-
-# Realizo predicciones en el conjunto de prueba
-y_pred = random_forest_model.predict(X_test)
 
 # Creo un nuevo DataFrame para guardar las predicciones
 predictions_df = X_test.copy()
@@ -219,9 +207,9 @@ data_gmaps_metadata2 = data_gmaps_metadata2.join(predictions_df['Predictions'])
 features_all = data_gmaps_metadata2[['BusinessAcceptsCreditCards', 'RestaurantsGoodForGroups', 'WheelchairAccessible', 'ByAppointmentOnly', 'GoodForKids', 'RestaurantsReservations', 'OutdoorSeating', 'RestaurantsTakeOut', 'RestaurantsDelivery']]
 
 # Realizo predicciones para todas las filas
-predictions_all = random_forest_model.predict(features_all)  # Asegúrate de utilizar el modelo entrenado
+predictions_all = model.predict(features_all)
 
-# Agrego las predicciones como una nueva columna en el DataFrame original
+# Añado las predicciones al DataFrame original
 data_gmaps_metadata2['Predictions'] = predictions_all
 
 # importamos el df
@@ -274,7 +262,6 @@ ponderacion_avg_df.columns = ['gmap_id', 'ponderacion_average']
 # Realizo la fusión entre data_gmaps_metadata2 y ponderacion_avg_df
 data_gmaps_metadata2 = data_gmaps_metadata2.merge(ponderacion_avg_df, on='gmap_id', how='left')
 
-
 # Me doy cuenta que estas columnas tendrian que ser numero entero y quedaron como float las paso a numero entero
 columns_to_convert = ['RestaurantsDelivery', 'RestaurantsTakeOut', 'OutdoorSeating', 'RestaurantsReservations',
                       'GoodForKids', 'ByAppointmentOnly', 'WheelchairAccessible', 'RestaurantsGoodForGroups',
@@ -282,14 +269,12 @@ columns_to_convert = ['RestaurantsDelivery', 'RestaurantsTakeOut', 'OutdoorSeati
 
 data_gmaps_metadata2[columns_to_convert] = data_gmaps_metadata2[columns_to_convert].astype(int)
 
-data_gmaps_metadata2.isna().sum()
-
 # Completo con 0 los valores faltantes de ponderacion
 data_gmaps_metadata2.fillna(0, inplace=True)
 
 data_gmaps_metadata2.isna().sum()
 
-#@title Red Neural para elegir prospectos y tendencias
+#@Red Neural para elegir prospectos y tendencias
 
 # Selecciono las características (features) y el objetivo (target)
 features = ['Predictions', 'ponderacion_average', 'latitude', 'longitude', 'num_of_reviews', 'RestaurantsDelivery', 'RestaurantsTakeOut', 'OutdoorSeating', 'RestaurantsReservations','GoodForKids', 'ByAppointmentOnly', 'WheelchairAccessible', 'RestaurantsGoodForGroups','BusinessAcceptsCreditCards']
@@ -350,7 +335,7 @@ data_gmaps_metadata2 = data_gmaps_metadata2[columnas_deseadas]
 
 # Renombro las columnas
 nombres_columnas = {
-    'gmap_id': 'id_business',
+    'gmap_id': 'business_id',
     'avg_rating': 'rating',
     'Predictions': 'predictions',
     'ponderacion_average': 'weighted_avg',
@@ -359,6 +344,5 @@ nombres_columnas = {
 
 data_gmaps_metadata2 = data_gmaps_metadata2.rename(columns=nombres_columnas)
 
-#Exporto df
 data_gmaps_metadata2.parquet.to_parquet(
     os.path.join(folder_pipeline,'gmaps_modelo.parquet'))
