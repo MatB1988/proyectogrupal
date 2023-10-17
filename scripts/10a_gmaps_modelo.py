@@ -406,5 +406,5 @@ nombres_columnas = {
 data_gmaps_metadata2 = data_gmaps_metadata2.rename(columns=nombres_columnas)
 
 #Exporto df
-data_gmaps_metadata2.parquet.to_parquet(
+data_gmaps_metadata2.to_parquet(
     os.path.join(folder_pipeline,'gmaps_modelo.parquet'))
