@@ -331,7 +331,7 @@ data_gmaps_metadata2.isna().sum()
 features = ['Predictions', 'ponderacion_average', 'latitude',
             'longitude','num_of_reviews',
             'RestaurantsDelivery', 'RestaurantsTakeOut',
-            'OutdoorSeating', 'RestaurantsReservations'
+            'OutdoorSeating', 'RestaurantsReservations',
             'GoodForKids', 'ByAppointmentOnly', 'WheelchairAccessible',
             'RestaurantsGoodForGroups','BusinessAcceptsCreditCards']
 target = 'avg_rating'
