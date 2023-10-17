@@ -1,11 +1,11 @@
 # Librerias
+import os
 
 # Datos
-import json
+#import json
 import pandas as pd
-import numpy as np
+#import numpy as np
 #import pyarrow.parquet as pq
-import os
 #import fastparquet as fp
 
 # Analisis de sentimientos
