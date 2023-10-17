@@ -8,7 +8,7 @@ folder_output = "3_output"
 
 # importamos el df
 ml_gmaps = pd.read_parquet(os.path.join(folder_pipeline,'ml_gmaps.parquet'))
-ml_gmaps.drop(columns=["name","address","latitude","longitude"], inplace=True)
+#ml_gmaps.drop(columns=["name","address","latitude","longitude"], inplace=True)
 
 #ml_yelp = pd.read_parquet(os.path.join(folder_pipeline,'ml_yelp.parquet'))
 #ml_yelp.drop(columns=["name","address","latitude","longitude"], inplace=True)
