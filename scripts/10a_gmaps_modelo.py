@@ -397,10 +397,10 @@ data_gmaps_metadata2 = data_gmaps_metadata2[columnas_deseadas]
 # Renombro las columnas
 nombres_columnas = {
     'gmap_id': 'business_id',
-    'avg_rating': 'rating_historico',
+    'avg_rating': 'rating_historico', # distinguir del rating usado en KPI
     'Predictions': 'predictions',
     'ponderacion_average': 'weighted_avg',
-    'predicted_rating': 'predicted_rating_historico'
+    'predicted_rating': 'predicted_rating_historico' # distinguir del rating usado en KPI
 }
 
 data_gmaps_metadata2 = data_gmaps_metadata2.rename(columns=nombres_columnas)
