@@ -405,6 +405,13 @@ nombres_columnas = {
 
 data_gmaps_metadata2 = data_gmaps_metadata2.rename(columns=nombres_columnas)
 
+# pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object",
+# 'Conversion failed for column address with type object')
+data_ml_gmaps = pd.DataFrame(data_gmaps_metadata2).convert_dtypes().copy()
+data_ml_gmaps[["address","state_name","state_code"]] = data_ml_gmaps[
+    ["address","state_name","state_code"]].copy().astype("string")
+
 #Exporto df
-data_gmaps_metadata2.to_parquet(
-    os.path.join(folder_pipeline,'gmaps_modelo.parquet'))
+data_ml_gmaps.to_parquet(
+    os.path.join(folder_pipeline,'data_ml_gmaps.parquet'),
+    index=False)
