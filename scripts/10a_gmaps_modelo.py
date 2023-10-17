@@ -1,4 +1,3 @@
-
 # Librerias
 
 # Datos
@@ -6,7 +5,7 @@ import json
 import pandas as pd
 import numpy as np
 import pyarrow.parquet as pq
-import os 
+import os
 import fastparquet as fp
 
 # Analisis de sentimientos
@@ -29,7 +28,11 @@ folder_output = "3_output"
 
 # importamos el df
 data_gmaps_metadata = pd.read_parquet(
-    os.path.join(folder_output,'gmaps_metadata_filtrado.parquet'))
+    os.path.join(folder_pipeline,'gmaps_metadata_filtrado.parquet'))
+
+# importamos el df
+data_gmaps_reviews = pd.read_parquet(
+    os.path.join(folder_pipeline,'data_gmaps_reviews_norm.parquet'))
 
 
 # Elimino nan de Misc
