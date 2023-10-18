@@ -23,7 +23,10 @@ data_ml_gmaps["ml_indice_rank_codpostal"] = data_ml_gmaps.groupby(
     ["codigo_postal_zcta","ml_categoria"]
     )["ml_indice"].rank(pct=True)
 data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps.groupby(
-    ["state_code","ml_categoria"])["ml_indice"].rank(pct=True)*100
+    ["state_code","ml_categoria"])["ml_indice"].rank(pct=True)
+
+data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps["ml_indice_rank_estado"].copy()*100
+data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps["ml_indice_rank_estado"].copy().round(2)
 
 data_ml_gmaps.rename(
     columns={"predictions":"rndmfrst_predicted_rating_hist",
@@ -50,4 +53,5 @@ business_ml = pd.merge(
 
 # export DF final
 business_ml = data_ml_gmaps.copy() # aun sin yelp
+business_ml.dropna(inplace=True)
 business_ml.to_parquet(os.path.join(folder_output,'business_ml.parquet'))

@@ -46,10 +46,10 @@ data_kpi_gmaps_cumplimiento = pd.merge(
         how='left'),
     left=data_ml_gmaps_cumplimiento_state,
     how='left')
-data_kpi_gmaps_cumplimiento["kpi_cumplimiento_cp"] = (
-    data_kpi_gmaps_cumplimiento["atributos_business_sum"] / data_kpi_gmaps_cumplimiento["atributos_cp_max"]) * 100
-data_kpi_gmaps_cumplimiento["kpi_cumplimiento_state"] = (
-    data_kpi_gmaps_cumplimiento["atributos_business_sum"] / data_kpi_gmaps_cumplimiento["atributos_state_max"]) * 100
+data_kpi_gmaps_cumplimiento["kpi_cumplimiento_cp"] = round((
+    data_kpi_gmaps_cumplimiento["atributos_business_sum"] / data_kpi_gmaps_cumplimiento["atributos_cp_max"]) * 100,2)
+data_kpi_gmaps_cumplimiento["kpi_cumplimiento_state"] = round((
+    data_kpi_gmaps_cumplimiento["atributos_business_sum"] / data_kpi_gmaps_cumplimiento["atributos_state_max"]) * 100,2)
 
 
 # Guardar el DataFrame final como un archivo parquet

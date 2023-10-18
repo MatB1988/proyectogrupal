@@ -37,5 +37,24 @@ business_kpi = pd.merge(
     right=business_kpi_cumplimiento,
     how='left')
 
+business_kpi_cumplimiento.rename(
+    columns={"zcta5_geoid":"codigo_postal_zcta"}, inplace=True)
+business_kpi_cumplimiento.drop(
+    columns=["atributos_business_sum","atributos_cp_max","atributos_state_max",
+             "codigo_postal_zcta","state_code"],
+    inplace=True)
+
+business_kpi = pd.merge(
+    left=pd.merge(
+      left=business_kpi_popularidad,
+      right=business_kpi_satisfaccion,
+      how='left'),
+    right=business_kpi_cumplimiento,
+    how='left')
+business_kpi.drop(
+    columns=["kpi_popularidad_crecimiento","kpi_satisfaccion_rating","kpi_satisfaccion_sentimiento"],
+    inplace=True)
+business_kpi.dropna(inplace=True)
+
 business_kpi.to_parquet(
     os.path.join(folder_output,'business_kpi.parquet'))

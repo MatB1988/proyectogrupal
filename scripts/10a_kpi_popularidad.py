@@ -74,9 +74,9 @@ business_kpi_popularidad_parte = pd.merge(
     right=business_kpi_popularidad_rating_codigo_postal_zcta.drop(columns=["codigo_postal_zcta_size_pctchange"]),
     how='left'
     ).dropna()
-business_kpi_popularidad_parte["kpi_popularidad_parte"] = (
+business_kpi_popularidad_parte["kpi_popularidad_parte"] = round((
     business_kpi_popularidad_parte["business_id_rating_size"] / business_kpi_popularidad_parte["codigo_postal_zcta_rating_size"]
-    )*100
+    )*100,2)
 business_kpi_popularidad_parte.drop(
     columns=["business_id_rating_size","codigo_postal_zcta_rating_size"], inplace=True)
 

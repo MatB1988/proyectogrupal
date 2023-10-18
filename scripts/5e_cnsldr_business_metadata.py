@@ -29,5 +29,7 @@ data_yelp_metadata = pd.read_parquet(
 data_business_metadata = pd.concat([data_gmaps_metadata, data_yelp_metadata]).rename(
     columns={"zcta5_geoid":"codigo_postal_zcta"})
 
+data_business_metadata.dropna(inplace=True)
+
 data_business_metadata.to_parquet(
     os.path.join(folder_output,'business_metadata_filtrado.parquet'))
