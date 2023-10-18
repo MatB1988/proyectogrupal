@@ -27,7 +27,7 @@ data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps.groupby(
 
 data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps["ml_indice_rank_estado"].copy()*100
 data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps["ml_indice_rank_estado"].copy().round(2)
-data_ml_gmaps["predicted_rating_historico"] = data_ml_gmaps["predicted_rating_historico"].copy().round(2)
+data_ml_gmaps["predicted_rating_historico"] = data_ml_gmaps["predicted_rating_historico"].copy().np.round(2)
 
 data_ml_gmaps.rename(
     columns={"predictions":"rndmfrst_predicted_rating_hist",
