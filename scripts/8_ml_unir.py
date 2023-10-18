@@ -17,7 +17,7 @@ data_ml_gmaps.rename(columns={"zcta5_geoid":"codigo_postal_zcta"}, inplace=True)
 
 data_ml_gmaps["ml_indice"] = round(
     data_ml_gmaps["rating_historico"] - data_ml_gmaps["predicted_rating_historico"]
-    ,2)
+    ,3)
 data_ml_gmaps["ml_categoria"] = np.where(data_ml_gmaps["ml_indice"]<0, "prospecto", "tendencia")
 data_ml_gmaps["ml_indice_rank_codpostal"] = data_ml_gmaps.groupby(
     ["codigo_postal_zcta","ml_categoria"]
@@ -26,8 +26,8 @@ data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps.groupby(
     ["state_code","ml_categoria"])["ml_indice"].rank(pct=True)
 
 data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps["ml_indice_rank_estado"].copy()*100
-data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps["ml_indice_rank_estado"].copy().round(2)
-data_ml_gmaps["predicted_rating_historico"] = np.round(data_ml_gmaps["predicted_rating_historico"].copy(), 2)
+data_ml_gmaps["ml_indice_rank_estado"] = data_ml_gmaps["ml_indice_rank_estado"].copy().round(3)
+data_ml_gmaps["predicted_rating_historico"] = np.round(data_ml_gmaps["predicted_rating_historico"].copy(), 3)
 
 data_ml_gmaps.rename(
     columns={"predictions":"rndmfrst_predicted_rating_hist",

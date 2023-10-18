@@ -81,8 +81,8 @@ columns_first = ["ml_categoria","business_id","name",
                  "kpi_popularidad_parte","kpi_satisfaccion_suma","kpi_cumplimiento_cp"]
 business_metricas_dashboard = business_metricas_dashboard.reindex(
     columns=columns_first + list(business_metricas_dashboard.columns.difference(columns_first, sort=False)))
-columns_float = business_metricas_dashboard.select_dtypes(include=[np.float]).columns.tolist() # type: ignore
-business_metricas_dashboard[columns_float] = business_metricas_dashboard[columns_float].round(2)
+columns_float = business_metricas_dashboard.select_dtypes(include=[float]).columns.tolist() # type: ignore
+business_metricas_dashboard[columns_float] = business_metricas_dashboard[columns_float].round(3)
 
 # DF 2
 business_metricas_dashboard.to_parquet(
