@@ -40,5 +40,5 @@ cd ~ && [ -f business_reviews.py ] && sudo rm business_reviews.py
 cd ~ && sudo wget -O business_reviews.py https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/5f_cnsldr_business_reviews.py
 sudo ~/anaconda3/envs/pandas_geo/bin/python business_reviews.py
 
-gsutil -m rsync -r /home/henry_grupo10_v1/3_output/ gs://1_transform/
-gsutil -m cp /home/henry_grupo10_v1/2_pipeline/*.parquet gs://2_pipelines
+#gsutil -m rsync -r /home/henry_grupo10_v1/3_output/ gs://1_transform/
+#gsutil -m cp /home/henry_grupo10_v1/2_pipeline/*.parquet gs://2_pipelines
