@@ -41,7 +41,7 @@ En resumen, nuestro enfoque no considerar aspectos financieros u operativos. Enf
 - [ETL/EDA GMaps metadata](https://github.com/MatB1988/proyectogrupal/blob/main/Notebooks/ETL_EDA/etl_eda_metadata_gmaps.ipynb)
 - [ETL/EDA GMaps reviews](https://github.com/MatB1988/proyectogrupal/blob/200e751b923839d9d5c2cd6b493fa1e1378e7577/Notebooks/ETL_EDA/etl_1_gmaps_reviews_estado.ipynb)
 - [ETL/EDA Yelp](https://github.com/MatB1988/proyectogrupal/blob/da6dc7095e2eab377b845e867f011891a009b420/Notebooks/ETL_EDA/yelp_to_parquet.ipynb)
-- [MODELO]()
+- [MODELO](https://github.com/MatB1988/proyectogrupal/blob/eff02c0f0331464f7d52d6c02ea09de10ab3a75b/Notebooks/gmaps_metadata%26reviews_modelo_sentimiento_final.ipynb)
 
 ## **VIDEO** 
 
