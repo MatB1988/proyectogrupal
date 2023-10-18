@@ -55,7 +55,7 @@ business_ml_simple = business_ml.drop(
 business_contacto = business_ml_simple[
     ["business_id","name","address","codigo_postal_zcta","state_code"]
     ].drop_duplicates().copy()
-business_contacto.to_parquet(os.path.join(folder_output,'business_contacto.parquet'))
+business_contacto.to_parquet(os.path.join(folder_output,'business_contacto_dashboard.parquet'))
 
 
 #### METRICAS PARA EL DASHBOARD POR CATEGORIA DE ML
