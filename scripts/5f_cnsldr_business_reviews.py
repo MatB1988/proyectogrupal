@@ -45,6 +45,13 @@ data_business_reviews_numeric = pd.merge(
     left=data_business_reviews_reviews_size,
     right=data_business_reviews_rating_mean,
     how='left')
+data_business_reviews_numeric.drop(columns=[
+    "state_name","state_code","codigo_postal_zcta"])
 data_business_reviews_numeric.dropna(inplace=True)
 data_business_reviews_numeric.to_parquet(
     os.path.join(folder_output,'business_reviews_norm_numeric.parquet'))
+
+data_business_reviews_numeric_singeo = data_business_reviews_numeric.drop(
+    columns=["state_name","state_code","codigo_postal_zcta"]).copy()
+data_business_reviews_numeric.to_parquet(
+    os.path.join(folder_output,'business_reviews_norm_numeric_singeo.parquet'))
