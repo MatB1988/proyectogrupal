@@ -55,7 +55,8 @@ business_ml_simple = business_ml.drop(
 business_contacto = business_ml_simple[
     ["business_id","name","address","codigo_postal_zcta","state_code"]
     ].drop_duplicates().copy()
-business_contacto.to_parquet(os.path.join(folder_output,'business_contacto_dashboard.parquet'))
+business_contacto.to_parquet(
+    os.path.join(folder_output,'business_contacto_dashboard.parquet'),index=False)
 
 
 #### METRICAS PARA EL DASHBOARD POR CATEGORIA DE ML
@@ -84,16 +85,19 @@ columns_float = business_metricas_dashboard.select_dtypes(include=[np.float]).co
 business_metricas_dashboard[columns_float] = business_metricas_dashboard[columns_float].round(2)
 
 # DF 2
-business_metricas_dashboard.to_parquet(os.path.join(folder_output,'business_metricas_dashboard_todos.parquet'))
+business_metricas_dashboard.to_parquet(
+    os.path.join(folder_output,'business_metricas_dashboard_todos.parquet'),index=False)
 
 # TABLAS SEPARADAS POR CATEGORIA DE ML
 
 # DF 3
 business_metricas_dashboard_prospecto = business_metricas_dashboard.loc[
     business_metricas_dashboard["ml_categoria"].isin(["prospecto"])].drop_duplicates().copy()
-business_metricas_dashboard_prospecto.to_parquet(os.path.join(folder_output,'business_metricas_dashboard_prospecto.parquet'))
+business_metricas_dashboard_prospecto.to_parquet(
+    os.path.join(folder_output,'business_metricas_dashboard_prospecto.parquet'),index=False)
 
 # DF 4
 business_metricas_dashboard_tendencia = business_metricas_dashboard.loc[
     business_metricas_dashboard["ml_categoria"].isin(["tendencia"])].drop_duplicates().copy()
-business_metricas_dashboard_tendencia.to_parquet(os.path.join(folder_output,'business_metricas_dashboard_tendencia.parquet'))
+business_metricas_dashboard_tendencia.to_parquet(
+    os.path.join(folder_output,'business_metricas_dashboard_tendencia.parquet'),index=False)
