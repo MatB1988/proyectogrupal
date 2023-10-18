@@ -40,6 +40,8 @@ data_business_reviews_rating_mean = data_business_reviews.groupby(
         ],
     dropna=False
     )["rating"].mean().reset_index().rename(columns={"rating":"rating_mean"})
+data_business_reviews_rating_mean["rating_mean"] = data_business_reviews_rating_mean[
+    "rating_mean"].round(2)
 
 data_business_reviews_numeric = pd.merge(
     left=data_business_reviews_reviews_size,
