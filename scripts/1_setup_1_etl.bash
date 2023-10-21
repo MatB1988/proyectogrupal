@@ -26,6 +26,7 @@ cd ~ && bash ~/downloads/Anaconda3-2023.09-0-Linux-x86_64.sh -b
 export PATH=$PATH:/anaconda3/bin
 sudo ~/anaconda3/bin/conda init && bash -l
 sudo ~/anaconda3/bin/conda config --set auto_activate_base false
+sudo ~/anaconda3/bin/conda update --name base -c defaults conda
 
 # entorno geopandas
 cd ~/0_scripts
@@ -36,6 +37,7 @@ sudo ~/anaconda3/bin/activate pandas_geo
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
 sudo ~/anaconda3/bin/conda install --name pandas_geo --yes --file ~/0_scripts/python_req_geopandas.txt
 sudo ~/anaconda3/bin/deactivate
+sudo ~/anaconda3/bin/conda update --name pandas_geo --yes --all
 
 # entorno ML
 cd ~/0_scripts
@@ -46,6 +48,7 @@ sudo ~/anaconda3/bin/activate pandas_scikit
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
 sudo ~/anaconda3/bin/conda install --name pandas_scikit --yes --file ~/0_scripts/python_req_scikit.txt
 sudo ~/anaconda3/bin/deactivate
+sudo ~/anaconda3/bin/conda update --name pandas_scikit --yes --all
 
 #### R
 # instalamos entorno de R
@@ -58,20 +61,22 @@ sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_
 sudo apt install  -y r-base
 
 # Instalamos Librerias de R
+
+# Dependencias
 # tidyverse requirements
 sudo add-apt-repository  -y ppa:c2d4u.team/c2d4u4.0+ && sudo apt update
 sudo apt-get install -y libssl-dev libcurl4-openssl-dev unixodbc-dev libxml2-dev libmariadb-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
 # tidycensus requirements
 #sudo apt-get install -y libssl-dev libudunits2-dev libgdal-dev
 sudo apt-get install -y libmysqlclient-dev default-libmysqlclient-dev libudunits2-dev libgdal-dev
-
 # to allow the use of build-dep
 #sudo cp /etc/apt/sources.list /etc/apt/sources.list~
 #sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
 #sudo apt-get update # but does not solve: E: Unable to find a source package for install
 #sudo apt-get build-dep install -y r-cran-tidycensus E: Unable to find a source package for install
-
 sudo apt update -qq -y
+
+# Librerias
 sudo R -e 'install.packages("xml2", dependencies = T, INSTALL_opts = c("--no-lock"))'
 cd ~/0_scripts
 [ -f r_requirements.R ] && sudo rm r_requirements.R
