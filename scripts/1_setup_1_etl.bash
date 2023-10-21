@@ -81,5 +81,5 @@ sudo Rscript r_requirements.R
 cd ~ && sudo apt autoremove -y && sudo apt update -qq -y && sudo apt upgrade -qq -y
 
 # Resultados
-sudo ~/anaconda3/bin/conda list
-sudo R --version
+#sudo ~/anaconda3/bin/conda list
+#sudo R --version
