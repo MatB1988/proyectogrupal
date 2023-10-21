@@ -11,3 +11,15 @@ La conexión se realizó a través de DirectQuery, lo que tiene la limitación d
 ## KPIs
 
 Vamos a desarrollas los KPIs a utilizar en el tablero para medir los mismos:
+
+ - 1 Satisfaccion
+ - 2 Cumplimiento de atributos
+ - 3 Popularidad
+ - 4 Indice Random Forest
+
+Asi mismo se aplico otro modelo de analisis de sentimientos, para generar  un indice ponderado donde se alimenta a con eso y el resultado del random Forest a una red neural para sacar el indice de los prospectos y tendencias.
+
+## Dashboard
+
+Aplicamos toda la informacion recopilada en un tablero que le permita al cliente incursionando por las distintas solapas la mejor eleccion del candidato para su programa.
+
