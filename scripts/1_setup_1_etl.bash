@@ -22,30 +22,29 @@ cd downloads && sudo sudo wget https://repo.anaconda.com/archive/Anaconda3-2023.
 #-b flag Batch mode with no PATH modifications to ~/.bashrc.
 # Assumes that you agree to the license agreement.
 # Does not edit the .bashrc or .bash_profile files.
-cd ~ && bash /home/henry_grupo10_v1/downloads/Anaconda3-2023.09-0-Linux-x86_64.sh -b
+cd ~ && bash ~/downloads/Anaconda3-2023.09-0-Linux-x86_64.sh -b
 export PATH=$PATH:/anaconda3/bin
 sudo ~/anaconda3/bin/conda init && bash -l
 sudo ~/anaconda3/bin/conda config --set auto_activate_base false
 
 # entorno geopandas
-cd /home/henry_grupo10_v1/0_scripts
+cd ~/0_scripts
 [ -f python_req_geopandas.txt ] && sudo rm python_req_geopandas.txt
-cd ~
 sudo wget -O python_req_geopandas.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_req_geopandas.txt
 sudo ~/anaconda3/bin/conda create --yes --name pandas_geo python=3.10
 sudo ~/anaconda3/bin/activate pandas_geo
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
-sudo ~/anaconda3/bin/conda install --name pandas_geo --yes --file /home/henry_grupo10_v1/0_scripts/python_req_geopandas.txt
+sudo ~/anaconda3/bin/conda install --name pandas_geo --yes --file ~/0_scripts/python_req_geopandas.txt
 sudo ~/anaconda3/bin/deactivate
 
 # entorno ML
+cd ~/0_scripts
 [ -f python_req_scikit.txt ] && sudo rm python_req_scikit.txt
 sudo wget -O python_req_scikit.txt https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/python_req_scikit.txt
-cd ~
 sudo ~/anaconda3/bin/conda create --yes --name pandas_scikit python=3.10
 sudo ~/anaconda3/bin/activate pandas_scikit
 sudo ~/anaconda3/bin/conda config --env --append channels conda-forge
-sudo ~/anaconda3/bin/conda install --name pandas_scikit --yes --file /home/henry_grupo10_v1/0_scripts/python_req_scikit.txt
+sudo ~/anaconda3/bin/conda install --name pandas_scikit --yes --file ~/0_scripts/python_req_scikit.txt
 sudo ~/anaconda3/bin/deactivate
 
 #### R
@@ -74,11 +73,12 @@ sudo apt-get install -y libmysqlclient-dev default-libmysqlclient-dev libudunits
 
 sudo apt update -qq -y
 sudo R -e 'install.packages("xml2", dependencies = T, INSTALL_opts = c("--no-lock"))'
-cd /home/henry_grupo10_v1/0_scripts
+cd ~/0_scripts
 [ -f r_requirements.R ] && sudo rm r_requirements.R
 sudo wget -O r_requirements.R https://raw.githubusercontent.com/MatB1988/proyectogrupal/main/scripts/r_requirements.R
 sudo Rscript r_requirements.R
-cd ~ && sudo apt autoremove -y && sudo apt update -qq -y && sudo apt upgrade -qq -y
+cd ~
+sudo apt autoremove -y && sudo apt update -qq -y && sudo apt upgrade -qq -y
 
 # Resultados
 #sudo ~/anaconda3/bin/conda list
